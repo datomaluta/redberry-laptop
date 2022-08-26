@@ -4,11 +4,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14.7rem;
+  /* margin-bottom: 14.7rem; */
   /* ამას თუ რამეა მერე გავაქრობ */
 }
 
 .action {
+  /* font-family: "Helvetica Neue"; */
   text-decoration: none;
   color: #fff;
   font-size: 2rem;

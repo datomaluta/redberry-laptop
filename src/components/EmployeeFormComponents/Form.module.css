@@ -1,0 +1,31 @@
+.names {
+  display: flex;
+  /* background-color: red; */
+  gap: 60px;
+}
+
+.firstName {
+  width: 100%;
+}
+
+.lastName {
+  width: 100%;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.btnWrapper button {
+  background-color: #62a1eb;
+  border: none;
+  color: #fff;
+  padding: 18px 45px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  border-radius: 8px;
+}

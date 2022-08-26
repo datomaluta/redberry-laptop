@@ -1,6 +1,9 @@
 .centered {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* background-color: blue; */
+  /* justify-content: center; */
+  align-items: center;
+  background-color: blue;
+  height: 100%;
+  width: 100%;
 }

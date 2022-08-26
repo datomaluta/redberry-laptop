@@ -1,0 +1,27 @@
+.header {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.header ul {
+  display: flex;
+  gap: 66px;
+}
+
+.header li {
+  list-style: none;
+}
+
+.header a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #232323;
+}
+
+.active {
+  border-bottom: 2px solid #232323;
+}
