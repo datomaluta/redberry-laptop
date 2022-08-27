@@ -1,6 +1,6 @@
 import Actions from "../components/homeComponents/Actions";
 import Images from "../components/homeComponents/Images";
-import CenteredWrapper from "../layouts/CenteredWrapper";
+import CenteredWrapper from "../layouts/centeredLayout/CenteredWrapper";
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
-import GeneralForm from "../../layouts/GeneralForm";
-import classes from "./Form.module.css";
+import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
+import classes from "./EmpForm.module.css";
 
 const Form = () => {
   return (

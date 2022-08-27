@@ -2,12 +2,12 @@
   /* background-color: red; */
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 4rem;
 }
 
 .header ul {
   display: flex;
-  gap: 66px;
+  gap: 6.6rem;
 }
 
 .header li {
@@ -17,11 +17,11 @@
 .header a {
   text-decoration: none;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 2rem;
+  line-height: 2.4rem;
   color: #232323;
 }
 
 .active {
-  border-bottom: 2px solid #232323;
+  border-bottom: .2rem solid #232323;
 }

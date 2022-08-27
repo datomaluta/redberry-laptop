@@ -1,10 +1,10 @@
-import Form from "../components/EmployeeFormComponents/Form";
-import FormPageWrapper from "../layouts/FormPageWrapper";
+import EmpForm from "../components/EmployeeFormComponents/EmpForm";
+import FormPageWrapper from "../layouts/formPageLayout/FormPageWrapper";
 
 const EmployeeForm = () => {
   return (
     <FormPageWrapper>
-      <Form />
+      <EmpForm />
     </FormPageWrapper>
   );
 };

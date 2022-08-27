@@ -1,0 +1,51 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  width: 122.6rem;
+  /* height: 973px; */
+  background-color: #fff;
+  border-radius: 1rem;
+  font-size: 1.8rem;
+  line-height: 2.1rem;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 2.1rem;
+  /* padding-top: 9.6rem;
+  padding-bottom: 5rem;
+  padding-left: 17.4rem;
+  padding-right: 17.4rem; */
+  padding: 9.6rem 17.4rem 5rem;
+  margin-bottom: 6.7rem;
+}
+
+.form input {
+  display: block;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 2.1rem;
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: 0.8re;
+  outline: none;
+  border: 0.1rem solid #8ac0e2;
+}
+
+.form label {
+  font-size: 1.8rem;
+  line-height: 2.1rem;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.form select {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: #ebebeb;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 1.8rem;
+}

@@ -1,5 +1,5 @@
 import LapForm from "../components/laptopFormComponents/LapForm";
-import FormPageWrapper from "../layouts/FormPageWrapper";
+import FormPageWrapper from "../layouts/formPageLayout/FormPageWrapper";
 
 const LaptopForm = () => {
   return (

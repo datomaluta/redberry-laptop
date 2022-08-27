@@ -1,4 +1,4 @@
-import GeneralForm from "../../layouts/GeneralForm";
+import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./LapForm.module.css";
 
 const LaptopForm = () => {
