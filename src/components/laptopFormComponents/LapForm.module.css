@@ -1,0 +1,179 @@
+.imageUploader {
+  /* background-color: red; */
+  border: 2px dashed #4386a9;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 65px;
+  padding-top: 107px;
+  padding-bottom: 115px;
+}
+
+.imageUploader label {
+  text-align: center;
+  line-height: 38px;
+  font-weight: 500;
+  font-size: 20px;
+  color: #4386a9;
+}
+
+.imageUploader input {
+  /* background-color: red; */
+  /* border: none; */
+  color: #fff;
+
+  border: none;
+  display: flex;
+  width: 233px;
+  text-align: center;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+  text-align: center;
+}
+.custom-file-input::before {
+  font-family: "Helvetica Neue";
+  content: "ატვირთე";
+  text-align: center;
+  display: inline-block;
+  background: #62a1eb;
+  color: #fff;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  /* text-shadow: 1px 1px #fff; */
+  font-weight: 500;
+  font-size: 20px;
+}
+/* .custom-file-input:hover::before {
+    border-color: black;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  } */
+
+.bottomLabel {
+  font-weight: 300;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.names {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  padding-bottom: 52px;
+  border-bottom: 1px solid #c7c7c7;
+}
+.name {
+  width: 100%;
+}
+
+.brand {
+  width: 100%;
+}
+
+.cpuInfo {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.cpuInfo div {
+  width: 100%;
+}
+
+.ramInfo {
+  display: flex;
+  gap: 60px;
+}
+
+.ramCount {
+  width: 100%;
+}
+
+.ramRadio {
+  width: 100%;
+}
+
+/* .ramInfo div {
+    width: 100%;
+  } */
+
+.radioBox {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-top: 20px;
+}
+
+.radioWrapper input {
+  display: inline-block;
+  width: 20px;
+  margin-right: 18px;
+}
+
+.radioWrapper {
+  /* background-color: blue; */
+}
+
+.dateAndPrice {
+  display: flex;
+  gap: 60px;
+}
+
+.dateAndPrice div {
+  width: 100%;
+}
+
+.laptopCondition {
+  /* background-color: red; */
+}
+
+/* .radios {
+    margin-top: 20px;
+    display: flex;
+    gap: 60px;
+  }
+  
+  .radioContainer input {
+    display: inline-block;
+    width: 20px;
+    margin-right: 18px;
+  } */
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.back {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #62a1eb;
+  background: none;
+  border: none;
+}
+
+.save {
+  background-color: #62a1eb;
+  border: none;
+  color: #fff;
+  padding: 18px 45px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  border-radius: 8px;
+}

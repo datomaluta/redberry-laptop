@@ -1,5 +1,4 @@
 import GeneralForm from "../../layouts/GeneralForm";
-import logo from "../../assets/formimages/logoCircle.png";
 import classes from "./Form.module.css";
 
 const Form = () => {

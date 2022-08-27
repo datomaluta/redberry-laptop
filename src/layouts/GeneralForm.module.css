@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 70px;
   width: 122.6rem;
-  height: 973px;
+  /* height: 973px; */
   background-color: #fff;
   border-radius: 10px;
   font-size: 18px;
@@ -12,6 +12,7 @@
   font-size: 18px;
   line-height: 21px;
   padding-top: 96px;
+  padding-bottom: 50px;
   padding-left: 174px;
   padding-right: 174px;
   margin-bottom: 67px;
