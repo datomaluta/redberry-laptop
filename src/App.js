@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import "./assets/fonts/HelveticaNeue.ttc";
 import EmployeeForm from "./pages/EmployeeForm";
@@ -10,9 +10,10 @@ function App() {
     <div className="App">
       {/* <EmployeeForm /> */}
       <Routes>
-        <Route path="/" element={<EmployeeForm />} />
+        <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/test" element={<LaptopForm />} />
+        <Route path="/fillout/personal" element={<EmployeeForm />} />
+        <Route path="/fillout/laptop" element={<LaptopForm />} />
       </Routes>
     </div>
   );

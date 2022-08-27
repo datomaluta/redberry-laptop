@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./LapForm.module.css";
 
@@ -96,7 +97,9 @@ const LaptopForm = () => {
         </div>
       </div>
       <div className={classes.actions}>
-        <button className={classes.back}>უკან</button>
+        <Link to="/fillout/personal" className={classes.back}>
+          უკან
+        </Link>
         <button className={classes.save}>დამახსოვრება</button>
       </div>
     </GeneralForm>
