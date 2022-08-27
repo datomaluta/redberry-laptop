@@ -1,98 +1,198 @@
 import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./EmpForm.module.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
+import useInput from "../../hooks/use-input";
 
 const Form = () => {
-  const [teams, setTeams] = useState([]);
-  const [positions, setPositions] = useState([]);
   const [selectedTeamId, setSelectedTeamId] = useState();
-  const [error, setError] = useState(null);
-  const [nameIsValid, setNameIsValid] = useState(true);
-  const nameRef = useRef();
-  const surnameRef = useRef();
+
   const navigate = useNavigate();
 
-  // const { error, fetchField: fetchTeams, data: teams } = useHttp();
-
-  const fetchTeams = async () => {
-    setError(null);
-    try {
-      const response = await fetch(
-        "https://pcfy.redberryinternship.ge/api/teams"
-      );
-
-      if (!response.ok) {
-        console.log("error occured");
-        throw new Error("Request failed!");
-      }
-      const data = await response.json();
-      setTeams(data.data);
-    } catch (err) {
-      setError(err.message || "Something went wrong");
-    }
-  };
-
-  const fetchPositions = async () => {
-    setError(null);
-    try {
-      const response = await fetch(
-        "https://pcfy.redberryinternship.ge/api/positions"
-      );
-
-      if (!response.ok) {
-        console.log("error occured");
-        throw new Error("Request failed!");
-      }
-      const data = await response.json();
-      setPositions(data.data);
-    } catch (err) {
-      setError(err.message || "Something went wrong");
-    }
-  };
+  const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
+  const {
+    error: positionError,
+    fetchField: fetchPositions,
+    data: positions,
+  } = useHttp();
 
   useEffect(() => {
-    // const test = (data) => {
-    //   setTeams(data);
-    // };
-    fetchTeams();
-    fetchPositions();
-  }, []);
-  console.log(teams);
+    fetchTeams("teams");
+    fetchPositions("positions");
+  }, [fetchTeams, fetchPositions]);
+
+  // useInput hook use for each field
+  const {
+    value: enteredName,
+    isValid: enteredNameIsValid,
+    isTouchedHandler: setNameIsTouched,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetNameInput,
+  } = useInput((value) => value.trim() !== "");
+
+  const {
+    value: enteredSurname,
+    isValid: enteredSurnameIsValid,
+    isTouchedHandler: setSurnameIsTouched,
+    hasError: surnameInputHasError,
+    valueChangeHandler: surnameChangeHandler,
+    inputBlurHandler: surnameBlurHandler,
+    reset: resetSurnameInput,
+  } = useInput((value) => value.trim() !== "");
+
+  const {
+    value: team,
+    isValid: teamIsValid,
+    isTouchedHandler: setTeamIsTouched,
+    hasError: teamHasError,
+    valueChangeHandler: teamChangeHandler,
+    inputBlurHandler: teamBlurHandler,
+    reset: resetTeamSelector,
+  } = useInput((value) => value !== "");
+
+  const {
+    value: position,
+    isValid: positionIsValid,
+    isTouchedHandler: setPositionIsTouched,
+    hasError: positionHasError,
+    valueChangeHandler: positionChangeHandler,
+    inputBlurHandler: positionBlurHandler,
+    reset: resetPositionSelector,
+  } = useInput((value) => value !== "");
+
+  const {
+    value: enteredEmail,
+    isValid: enteredEmailIsValid,
+    isTouchedHandler: setEmailIsTouched,
+    hasError: emailInputHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput((value) => value.includes("@"));
+
+  const {
+    value: enteredPhoneNumber,
+    isValid: enteredPhoneNumberIsValid,
+    isTouchedHandler: setPhoneNumberIsTouched,
+    hasError: phoneNumberInputHasError,
+    valueChangeHandler: phoneNumberChangeHandler,
+    inputBlurHandler: phoneNumberBlurHandler,
+    reset: resetPhoneNumber,
+  } = useInput((value) => value.trim() !== "");
+
+  // useEffect for team and position selectors connection
+  // find in teams team, which name is equal selected team name
+  useEffect(() => {
+    if (teams.length > 0 && team.length > 0) {
+      const selectedObj = teams.find((currTeam) => currTeam.name === team);
+      setSelectedTeamId(selectedObj.id);
+    }
+  }, [team, teams]);
 
   const nextPageHandler = (event) => {
     event.preventDefault();
 
-    if (nameIsValid) {
-      console.log(nameRef.current.value);
-      // navigate("/fillout/laptop");
+    // set fields touched for better validation UX
+    setNameIsTouched();
+    setSurnameIsTouched();
+    setTeamIsTouched();
+    setPositionIsTouched();
+    setEmailIsTouched();
+    setPhoneNumberIsTouched();
+
+    if (
+      !enteredNameIsValid ||
+      !enteredSurnameIsValid ||
+      !teamIsValid ||
+      !positionIsValid ||
+      !enteredEmailIsValid ||
+      !enteredPhoneNumberIsValid
+    ) {
+      return;
     }
+
+    console.log("Next page");
+
+    // Reset fields to initial contition
+    resetNameInput();
+    resetSurnameInput();
+    resetTeamSelector();
+    resetPositionSelector();
+    resetEmail();
+    resetPhoneNumber();
   };
 
-  const teamChangeHandler = (event) => {
-    const selectedObj = teams.find((team) => team.name === event.target.value);
-    setSelectedTeamId(selectedObj.id);
-  };
+  // classes for when validation failed
+  const nameClasses = nameInputHasError
+    ? `${classes.invalid} ${classes.firstName} `
+    : classes.firstName;
+
+  const surnameClasses = surnameInputHasError
+    ? `${classes.invalid} ${classes.lastName}`
+    : classes.lastName;
+
+  const teamClasses = teamHasError
+    ? `${classes.error} ${classes.teamSelector}`
+    : classes.teamSelector;
+
+  const positionClasses = positionHasError
+    ? `${classes.error} ${classes.positionSelector}`
+    : classes.positionSelector;
+
+  const emailClasses = emailInputHasError ? `${classes.invalid} ` : "";
+
+  const phoneNumberClasses = phoneNumberInputHasError
+    ? `${classes.invalid}`
+    : "";
 
   return (
     <GeneralForm>
-      {error && <h2>{error}</h2>}
+      {(teamError || positionError) && <h2>{teamError || positionError}</h2>}
       <div className={classes.names}>
-        <div className={classes.firstName}>
+        <div className={nameClasses}>
           <label>სახელი</label>
-          <input ref={nameRef} />
+          <input
+            onChange={nameChangeHandler}
+            onBlur={nameBlurHandler}
+            value={enteredName}
+          />
+          {nameInputHasError ? (
+            <p>გამოიყენე მხოლოდ ქართული ასოები</p>
+          ) : (
+            <p className={classes.bottomLabel}>
+              მინიმუმ 2 სიმბოლო, ქართული ასოები
+            </p>
+          )}
         </div>
-        <div className={classes.lastName}>
+        <div className={surnameClasses}>
           <label>გვარი</label>
-          <input />
+          <input
+            value={enteredSurname}
+            onChange={surnameChangeHandler}
+            onBlur={surnameBlurHandler}
+          />
+          {nameInputHasError ? (
+            <p>გამოიყენე მხოლოდ ქართული ასოები</p>
+          ) : (
+            <p className={classes.bottomLabel}>
+              მინიმუმ 2 სიმბოლო, ქართული ასოები
+            </p>
+          )}
         </div>
       </div>
-      <div className={classes.teamSelector}>
-        <select onChange={teamChangeHandler} name="teams" id="teams">
-          <option hidden value="">
-            თიმი
-          </option>
+      <div className={teamClasses}>
+        <select
+          value={team}
+          required
+          onChange={teamChangeHandler}
+          onBlur={teamBlurHandler}
+          name="teams"
+          id="teams"
+        >
+          <option hidden>თიმი</option>
           {teams.length > 0 ? (
             teams.map((team) => (
               <option id={team.id} key={team.id} value={team.name}>
@@ -104,8 +204,14 @@ const Form = () => {
           )}
         </select>
       </div>
-      <div className={classes.positionSelector}>
-        <select name="positions" id="positions">
+      <div className={positionClasses}>
+        <select
+          value={position}
+          onChange={positionChangeHandler}
+          onBlur={positionBlurHandler}
+          name="positions"
+          id="positions"
+        >
           <option hidden value="">
             პოზიცია
           </option>
@@ -123,13 +229,35 @@ const Form = () => {
           )}
         </select>
       </div>
-      <div className={classes.mail}>
+      <div className={emailClasses}>
         <label>მეილი</label>
-        <input />
+        <input
+          value={enteredEmail}
+          onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
+        />
+        {emailInputHasError ? (
+          <p>შეიყვანე ვალიდური მეილი</p>
+        ) : (
+          <p className={classes.bottomLabel}>
+            უნდა მთავრდებოდეს @redberry.ge-ით
+          </p>
+        )}
       </div>
-      <div className={classes.phone}>
+      <div className={phoneNumberClasses}>
         <label>ტელეფონის ნომერი</label>
-        <input />
+        <input
+          value={enteredPhoneNumber}
+          onChange={phoneNumberChangeHandler}
+          onBlur={phoneNumberBlurHandler}
+        />
+        {phoneNumberInputHasError ? (
+          <p>შეიყვანე ვალიდური ნომერი</p>
+        ) : (
+          <p className={classes.bottomLabel}>
+            უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს
+          </p>
+        )}
       </div>
       <div className={classes.btnWrapper}>
         <button onClick={nextPageHandler}>შემდეგი</button>

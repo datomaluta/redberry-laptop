@@ -29,3 +29,29 @@
   border-radius: 0.8rem;
   cursor: pointer;
 }
+
+.bottomLabel {
+  font-weight: 300;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.invalid label {
+  /* background-color: red; */
+  color: red;
+}
+
+.invalid input {
+  border: 1px solid #e52f2f;
+}
+
+.invalid p {
+  color: #e52f2f;
+  font-weight: 300;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.error select {
+  border: 2px solid #e52f2f;
+}
