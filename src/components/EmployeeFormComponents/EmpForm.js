@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
+import {
+  emailValidator,
+  generalValidator,
+  phoneNumberValidator,
+} from "../../helpers/Validators";
+import { onlyGeorgia } from "../../helpers/Validators";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState();
@@ -31,7 +37,7 @@ const Form = () => {
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetNameInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(generalValidator);
 
   const {
     value: enteredSurname,
@@ -41,7 +47,7 @@ const Form = () => {
     valueChangeHandler: surnameChangeHandler,
     inputBlurHandler: surnameBlurHandler,
     reset: resetSurnameInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(generalValidator);
 
   const {
     value: team,
@@ -63,6 +69,8 @@ const Form = () => {
     reset: resetPositionSelector,
   } = useInput((value) => value !== "");
 
+  console.log(position);
+
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -71,7 +79,7 @@ const Form = () => {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput((value) => value.includes("@"));
+  } = useInput(emailValidator);
 
   const {
     value: enteredPhoneNumber,
@@ -81,7 +89,7 @@ const Form = () => {
     valueChangeHandler: phoneNumberChangeHandler,
     inputBlurHandler: phoneNumberBlurHandler,
     reset: resetPhoneNumber,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(phoneNumberValidator);
 
   // useEffect for team and position selectors connection
   // find in teams team, which name is equal selected team name
@@ -174,7 +182,7 @@ const Form = () => {
             onChange={surnameChangeHandler}
             onBlur={surnameBlurHandler}
           />
-          {nameInputHasError ? (
+          {surnameInputHasError ? (
             <p>გამოიყენე მხოლოდ ქართული ასოები</p>
           ) : (
             <p className={classes.bottomLabel}>
@@ -206,6 +214,7 @@ const Form = () => {
       </div>
       <div className={positionClasses}>
         <select
+          disabled={!teamIsValid}
           value={position}
           onChange={positionChangeHandler}
           onBlur={positionBlurHandler}
@@ -235,6 +244,7 @@ const Form = () => {
           value={enteredEmail}
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
+          type="email"
         />
         {emailInputHasError ? (
           <p>შეიყვანე ვალიდური მეილი</p>
