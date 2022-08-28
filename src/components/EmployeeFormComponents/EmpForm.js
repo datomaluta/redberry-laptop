@@ -98,7 +98,12 @@ const Form = () => {
       const selectedObj = teams.find((currTeam) => currTeam.name === team);
       setSelectedTeamId(selectedObj.id);
     }
+    resetPositionSelector();
   }, [team, teams]);
+
+  // useEffect(() => {
+
+  // }, [team]);
 
   const nextPageHandler = (event) => {
     event.preventDefault();
@@ -166,6 +171,7 @@ const Form = () => {
             onChange={nameChangeHandler}
             onBlur={nameBlurHandler}
             value={enteredName}
+            placeholder="გრიშა"
           />
           {nameInputHasError ? (
             <p>გამოიყენე მხოლოდ ქართული ასოები</p>
@@ -181,6 +187,7 @@ const Form = () => {
             value={enteredSurname}
             onChange={surnameChangeHandler}
             onBlur={surnameBlurHandler}
+            placeholder="ბაგრატიონი"
           />
           {surnameInputHasError ? (
             <p>გამოიყენე მხოლოდ ქართული ასოები</p>
@@ -245,6 +252,7 @@ const Form = () => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           type="email"
+          placeholder="grish666@redberry.ge"
         />
         {emailInputHasError ? (
           <p>შეიყვანე ვალიდური მეილი</p>
@@ -260,6 +268,7 @@ const Form = () => {
           value={enteredPhoneNumber}
           onChange={phoneNumberChangeHandler}
           onBlur={phoneNumberBlurHandler}
+          placeholder="+995 598 00 07 01"
         />
         {phoneNumberInputHasError ? (
           <p>შეიყვანე ვალიდური ნომერი</p>

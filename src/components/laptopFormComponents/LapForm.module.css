@@ -100,8 +100,9 @@
   width: 100%;
 }
 
-.ramRadio {
+.memoryRadio {
   width: 100%;
+
 }
 
 /* .ramInfo div {
@@ -176,4 +177,25 @@
   font-weight: 500;
   font-size: 2rem;
   border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.invalid label {
+  /* background-color: red; */
+  color: red;
+}
+
+.invalid input {
+  border: 1px solid #e52f2f;
+}
+
+.invalid p {
+  color: #e52f2f;
+  font-weight: 300;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.error select {
+  border: 2px solid #e52f2f;
 }

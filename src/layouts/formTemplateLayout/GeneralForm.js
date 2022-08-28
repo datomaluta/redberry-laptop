@@ -4,7 +4,9 @@ import { Fragment } from "react";
 const GeneralForm = (props) => {
   return (
     <Fragment>
-      <form className={classes.form}>{props.children}</form>
+      <form onSubmit={props.onSubmit} className={classes.form}>
+        {props.children}
+      </form>
     </Fragment>
   );
 };

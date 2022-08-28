@@ -33,8 +33,9 @@ export const emailValidator = (value) => {
 };
 
 export const phoneNumberValidator = (value) => {
+  const trimmedValue = value.trim();
   const phoneNumberFormat = /^(\+?995)?(79\d{7}|5\d{8})$/;
-  if (value.match(phoneNumberFormat)) {
+  if (trimmedValue.match(phoneNumberFormat)) {
     return true;
   } else {
     return false;
