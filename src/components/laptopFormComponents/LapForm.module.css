@@ -102,7 +102,6 @@
 
 .memoryRadio {
   width: 100%;
-
 }
 
 /* .ramInfo div {
@@ -198,4 +197,9 @@
 
 .error select {
   border: 2px solid #e52f2f;
+}
+
+.radioInvalid {
+  color: #e52f2f;
+  margin-right: 10px;
 }

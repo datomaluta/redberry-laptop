@@ -4,8 +4,14 @@ import useInput from "../../hooks/use-input";
 import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./LapForm.module.css";
 import useHttp from "../../hooks/use-http";
+import {
+  laptopNameValidator,
+  onlyNumberValidator,
+} from "../../helpers/Validators";
+import WarningIcon from "../../assets/formIcons/WarningIcon";
 
 const LaptopForm = () => {
+  const [selectedImage, setSelectedImage] = useState("");
   // const [memoryType, setMemoryType] = useState("");
   // const imgRef = useRef();
   // const [img, setImg] = useState("");
@@ -38,7 +44,7 @@ const LaptopForm = () => {
     valueChangeHandler: laptopNameChangeHandler,
     inputBlurHandler: laptopNameBlurHandler,
     reset: resetLaptopInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(laptopNameValidator);
 
   const {
     value: brand,
@@ -68,7 +74,7 @@ const LaptopForm = () => {
     valueChangeHandler: cpuCoreChangeHandler,
     inputBlurHandler: cpuCoreBlurHandler,
     reset: resetCpuCoreInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(onlyNumberValidator);
 
   const {
     value: cpuThread,
@@ -78,7 +84,7 @@ const LaptopForm = () => {
     valueChangeHandler: cpuThreadChangeHandler,
     inputBlurHandler: cpuThreadBlurHandler,
     reset: resetCpuThreadInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(onlyNumberValidator);
 
   const {
     value: ram,
@@ -88,7 +94,7 @@ const LaptopForm = () => {
     valueChangeHandler: ramChangeHandler,
     inputBlurHandler: ramBlurHandler,
     reset: resetRamInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(onlyNumberValidator);
 
   const {
     value: memoryType,
@@ -118,7 +124,7 @@ const LaptopForm = () => {
     valueChangeHandler: priceChangeHandler,
     inputBlurHandler: priceBlurHandler,
     reset: resetPriceInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(onlyNumberValidator);
 
   const {
     value: laptopState,
@@ -190,23 +196,26 @@ const LaptopForm = () => {
     : classes.ramCount;
 
   const memoryTypeClasses = memoryTypeHaserror
-    ? `${classes.memoryRadio} ${classes.invalid}`
-    : classes.memoryRadio;
+    ? ` ${classes.radioInvalid}`
+    : "";
 
   const priceClasses = priceHasError
     ? `${classes.price} ${classes.invalid}`
     : classes.price;
 
   const laptopStateClasses = laptopStateHasError
-    ? `${classes.laptopCondition} ${classes.invalid}`
-    : classes.laptopCondition;
+    ? ` ${classes.radioInvalid}`
+    : "";
 
   const radioChangeHandler = (event) => {
     console.log(event.target.value);
     // setMemoryType(event.target.value);
   };
 
-  console.log(laptopState);
+  const imgChangeHandler = (event) => {
+    setSelectedImage(event.target.files[0]);
+  };
+  console.log(selectedImage);
 
   return (
     <GeneralForm onSubmit={submitHandler}>
@@ -215,8 +224,7 @@ const LaptopForm = () => {
           ჩააგდე ან ატვრთე <br /> ლეპტოპის ფოტო
         </label>
         <input
-          // onChange={imgChangeHandler}
-          // ref={imgRef}
+          onChange={imgChangeHandler}
           id="img"
           className={classes["custom-file-input"]}
           type="file"
@@ -319,8 +327,9 @@ const LaptopForm = () => {
           />
           <p className={classes.bottomLabel}>მხოლოდ ციფრები</p>
         </div>
-        <div className={memoryTypeClasses}>
-          <label>მეხსიერების ტიპი</label>
+        <div className={classes.memoryRadio}>
+          <label className={memoryTypeClasses}>მეხსიერების ტიპი</label>
+          {memoryTypeHaserror && <WarningIcon />}
           <div className={classes.radioBox}>
             <div className={classes.radioWrapper}>
               <input
@@ -366,8 +375,8 @@ const LaptopForm = () => {
           <p className={classes.bottomLabel}>მხოლოდ ციფრები</p>
         </div>
       </div>
-      <div className={laptopStateClasses}>
-        <label>ლეპტოპის მდგომარეობა</label>
+      <div className={classes.laptopCondition}>
+        <label className={laptopStateClasses}>ლეპტოპის მდგომარეობა</label>
         <div className={classes.radioBox}>
           <div className={classes.radioWrapper}>
             <input

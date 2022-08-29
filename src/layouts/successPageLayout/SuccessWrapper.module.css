@@ -1,0 +1,8 @@
+.backdrop {
+  background-color: #4a4a4a;
+  height: 108rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

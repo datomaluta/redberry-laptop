@@ -1,0 +1,67 @@
+.popup {
+  background-color: #fff;
+  width: 84.7rem;
+  height: 53.7rem;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgWrapper {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.imgWrapper img {
+  /* background-color: black; */
+}
+
+.popup h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #292929;
+  margin-bottom: 7rem;
+  /* background-color: yellow; */
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.8rem;
+}
+
+.action {
+  /* font-family: "Helvetica Neue"; */
+  text-decoration: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  font-weight: 500;
+  background-color: #62a1eb;
+  display: block;
+  width: fit-content;
+  width: 29.7rem;
+  height: 6rem;
+  margin-top: 2.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.8rem;
+}
+
+.generalAction {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: #62a1eb;
+  background: none;
+  border: none;
+  text-decoration: none;
+}

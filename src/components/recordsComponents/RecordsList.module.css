@@ -1,0 +1,16 @@
+.list {
+  width: 1200px;
+  display: flex;
+  gap: 55px;
+  /* background-color: red; */
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 34px;
+  margin-top: 7.9rem;
+  margin-bottom: 7.9rem;
+  text-align: center;
+}

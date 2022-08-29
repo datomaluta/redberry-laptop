@@ -1,0 +1,70 @@
+.wrapper {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  width: 1178px;
+  margin: 0 auto;
+}
+
+.personalInfo {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.imgWrapper {
+  background-color: blue;
+  width: 577px;
+  height: 342px;
+}
+
+.imgWrapper img {
+  width: 100%;
+  /* height: 342px; */
+}
+
+.infoBox {
+  display: flex;
+  /* align-items: center; */
+}
+
+.titles p {
+  font-weight: 700;
+  font-size: 22px;
+  color: #2e2e2e;
+  /* background-color: wheat; */
+  margin-bottom: 20px;
+}
+
+.values p {
+  font-size: 22px;
+  font-weight: 400;
+  color: #797979;
+  /* background-color: pink; */
+  height: fit-content;
+  margin-bottom: 20px;
+  margin-left: 80px;
+}
+
+.row {
+  display: flex;
+  gap: 80px;
+  background-color: aqua;
+  justify-content: space-between;
+}
+
+.row p {
+  font-weight: 700;
+  font-size: 22px;
+  color: #2e2e2e;
+  background-color: wheat;
+  margin-bottom: 20px;
+}
+
+.row span {
+  font-size: 22px;
+  font-weight: 400;
+  color: #797979;
+  background-color: pink;
+  height: fit-content;
+}

@@ -1,0 +1,42 @@
+.item {
+  background-color: #eafaff;
+  display: flex;
+  gap: 2.8rem;
+  border-radius: 2rem;
+  padding: 1.4rem;
+  padding-right: 7.7rem;
+  border: 1px solid #aed1ea;
+}
+
+.imgWrapper {
+}
+
+.imgWrapper img {
+  height: 17.8rem;
+  border-radius: 1rem;
+}
+
+.personName {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #2e2e2e;
+  margin-top: 4.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.laptopName {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 21px;
+  color: #2e2e2e;
+  margin-bottom: 4rem;
+}
+
+.moreBtn {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #4386a9;
+}

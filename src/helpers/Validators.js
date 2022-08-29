@@ -41,3 +41,21 @@ export const phoneNumberValidator = (value) => {
     return false;
   }
 };
+
+export const laptopNameValidator = (value) => {
+  const nameFormat = /^[a-zA-Z0-9$@$!%*?&#()^-_. +=]+$/;
+  if (value.match(nameFormat)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const onlyNumberValidator = (value) => {
+  const numberFormat = /^[0-9]+$/;
+  if (value.length > 0 && value.match(numberFormat)) {
+    return true;
+  } else {
+    return false;
+  }
+};
