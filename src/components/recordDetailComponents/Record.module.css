@@ -1,5 +1,4 @@
 .wrapper {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   width: 1178px;
@@ -10,29 +9,29 @@
   display: flex;
   align-items: center;
   gap: 60px;
+  padding-bottom: 84px;
+  border-bottom: 1px solid #a5a5a5;
 }
 
 .imgWrapper {
   background-color: blue;
   width: 577px;
   height: 342px;
+  overflow: hidden;
 }
 
 .imgWrapper img {
   width: 100%;
-  /* height: 342px; */
 }
 
 .infoBox {
   display: flex;
-  /* align-items: center; */
 }
 
 .titles p {
   font-weight: 700;
   font-size: 22px;
   color: #2e2e2e;
-  /* background-color: wheat; */
   margin-bottom: 20px;
 }
 
@@ -40,31 +39,50 @@
   font-size: 22px;
   font-weight: 400;
   color: #797979;
-  /* background-color: pink; */
   height: fit-content;
   margin-bottom: 20px;
   margin-left: 80px;
 }
 
-.row {
+.laptopInfo {
+  margin-top: 54px;
   display: flex;
-  gap: 80px;
-  background-color: aqua;
-  justify-content: space-between;
+  gap: 211px;
+  padding-bottom: 77px;
+  border-bottom: 1px solid #a5a5a5;
 }
 
-.row p {
+.leftSide {
+  display: flex;
+}
+
+.rightSide {
+  display: flex;
+}
+
+.restOfLaptop {
+  display: flex;
+  gap: 246px;
+  margin-top: 54px;
+}
+
+.certainRest p {
+  margin-left: 19px;
+}
+
+.certainLap p {
+  margin-left: 93px;
+}
+
+.heading {
+  font-family: "Helvetica Neue";
+
   font-weight: 700;
-  font-size: 22px;
-  color: #2e2e2e;
-  background-color: wheat;
-  margin-bottom: 20px;
-}
+  font-size: 34px;
+  line-height: 21px;
+  text-align: center;
+  color: #000000;
 
-.row span {
-  font-size: 22px;
-  font-weight: 400;
-  color: #797979;
-  background-color: pink;
-  height: fit-content;
+  margin-top: 76px;
+  margin-bottom: 84px;
 }
