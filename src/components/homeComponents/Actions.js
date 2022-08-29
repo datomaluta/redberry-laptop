@@ -7,7 +7,7 @@ const Actions = () => {
       <Link className={classes.action} to="/fillout/personal">
         ჩანაწერის დამატება
       </Link>
-      <Link className={classes.action} to="/">
+      <Link className={classes.action} to="/records">
         ჩანაწერების სია
       </Link>
     </div>
@@ -15,3 +15,5 @@ const Actions = () => {
 };
 
 export default Actions;
+
+//2b1f230c1f33f07e9324c7d3b01272bd

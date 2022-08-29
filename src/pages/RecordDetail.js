@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Record from "../components/recordDetailComponents/Record";
 import BackButton from "../UI/BackButton";
@@ -8,6 +8,7 @@ const RecordDetail = () => {
   const goBackHandler = () => {
     navigate(-1);
   };
+
   return (
     <Fragment>
       <BackButton onClick={goBackHandler} />
