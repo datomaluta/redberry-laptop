@@ -36,6 +36,7 @@ const Form = () => {
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
+    setValue: setNameValue,
     reset: resetNameInput,
   } = useInput(generalValidator);
 
@@ -46,6 +47,7 @@ const Form = () => {
     hasError: surnameInputHasError,
     valueChangeHandler: surnameChangeHandler,
     inputBlurHandler: surnameBlurHandler,
+    setValue: setSurnameValue,
     reset: resetSurnameInput,
   } = useInput(generalValidator);
 
@@ -56,6 +58,7 @@ const Form = () => {
     hasError: teamHasError,
     valueChangeHandler: teamChangeHandler,
     inputBlurHandler: teamBlurHandler,
+    setValue: setTeamValue,
     reset: resetTeamSelector,
   } = useInput((value) => value !== "");
 
@@ -66,6 +69,7 @@ const Form = () => {
     hasError: positionHasError,
     valueChangeHandler: positionChangeHandler,
     inputBlurHandler: positionBlurHandler,
+    setValue: setPositionValue,
     reset: resetPositionSelector,
   } = useInput((value) => value !== "");
 
@@ -78,6 +82,7 @@ const Form = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
+    setValue: setEmailValue,
     reset: resetEmail,
   } = useInput(emailValidator);
 
@@ -88,6 +93,7 @@ const Form = () => {
     hasError: phoneNumberInputHasError,
     valueChangeHandler: phoneNumberChangeHandler,
     inputBlurHandler: phoneNumberBlurHandler,
+    setValue: setPhoneNumberValue,
     reset: resetPhoneNumber,
   } = useInput(phoneNumberValidator);
 
@@ -98,8 +104,53 @@ const Form = () => {
       const selectedObj = teams.find((currTeam) => currTeam.name === team);
       setSelectedTeamId(selectedObj.id);
     }
-    resetPositionSelector();
+    // resetPositionSelector();
   }, [team, teams]);
+
+  useEffect(() => {
+    const name = localStorage.getItem("enteredName");
+    const surname = localStorage.getItem("enteredSurname");
+    const team = localStorage.getItem("team");
+    const position = localStorage.getItem("position");
+    const email = localStorage.getItem("email");
+    const phoneNumber = localStorage.getItem("phoneNumber");
+    console.log(name);
+    setNameValue(name);
+    setSurnameValue(surname);
+    setTeamValue(team);
+    setPositionValue(position);
+    setEmailValue(email);
+    setPhoneNumberValue(phoneNumber);
+    console.log(position);
+  }, []);
+
+  useEffect(() => {
+    if (enteredName.trim() !== "") {
+      localStorage.setItem("enteredName", enteredName);
+    }
+    if (enteredSurname.trim() !== "") {
+      localStorage.setItem("enteredSurname", enteredSurname);
+    }
+    if (team.trim() !== "") {
+      localStorage.setItem("team", team);
+    }
+    if (position.trim() !== "") {
+      localStorage.setItem("position", position);
+    }
+    if (enteredEmail.trim() !== "") {
+      localStorage.setItem("email", enteredEmail);
+    }
+    if (enteredPhoneNumber.trim() !== "") {
+      localStorage.setItem("phoneNumber", enteredPhoneNumber);
+    }
+  }, [
+    enteredName,
+    enteredSurname,
+    team,
+    position,
+    enteredEmail,
+    enteredPhoneNumber,
+  ]);
 
   // useEffect(() => {
 
@@ -160,6 +211,8 @@ const Form = () => {
   const phoneNumberClasses = phoneNumberInputHasError
     ? `${classes.invalid}`
     : "";
+
+  console.log(enteredName);
 
   return (
     <GeneralForm>

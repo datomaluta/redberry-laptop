@@ -7,8 +7,14 @@ const useInput = (validateValue) => {
   const valueIsValid = validateValue(enteredValue);
   const hasError = !valueIsValid && isTouched;
 
+  const setValue = (value) => {
+    console.log(value);
+    setEnteredValue(value);
+  };
+
   const valueChangeHandler = (event) => {
     setEnteredValue(event.target.value);
+    // localStorage.setItem(`enteredValue`, event.target.value);
   };
 
   const inputBlurHandler = (event) => {
@@ -31,6 +37,7 @@ const useInput = (validateValue) => {
     hasError,
     valueChangeHandler,
     inputBlurHandler,
+    setValue,
     reset,
   };
 };
