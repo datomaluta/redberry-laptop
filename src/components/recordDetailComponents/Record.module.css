@@ -47,13 +47,15 @@
 .laptopInfo {
   margin-top: 54px;
   display: flex;
-  gap: 211px;
+  gap: 60px;
   padding-bottom: 77px;
   border-bottom: 1px solid #a5a5a5;
 }
 
 .leftSide {
   display: flex;
+  width: 577px;
+  /* background-color: red; */
 }
 
 .rightSide {
@@ -62,7 +64,7 @@
 
 .restOfLaptop {
   display: flex;
-  gap: 246px;
+  gap: 60px;
   margin-top: 54px;
 }
 
@@ -72,6 +74,10 @@
 
 .certainLap p {
   margin-left: 93px;
+}
+
+.certainDate p {
+  margin-left: 54px;
 }
 
 .heading {

@@ -34,7 +34,7 @@ const Records = () => {
   useEffect(() => {
     const fetchLaptops = async () => {
       const response = await fetch(
-        "https://pcfy.redberryinternship.ge/api/laptops?token=a07b59d57425106820787e20aad4a251"
+        "https://pcfy.redberryinternship.ge/api/laptops?token=1c40792d27465fbe7c55aeb3cead277e"
       );
       const data = await response.json();
       console.log(data.data);
