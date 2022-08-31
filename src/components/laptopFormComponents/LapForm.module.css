@@ -43,7 +43,7 @@
   background: #62a1eb;
   color: #fff;
   /* border: 0.1rem solid #999; */
-  border-radius: 0.3rem;
+  border-radius: 10px;
   padding-top: 1.8rem;
   padding-bottom: 1.8rem;
   outline: none;
@@ -220,4 +220,29 @@
 .radioInvalid {
   color: #e52f2f;
   margin-right: 10px;
+}
+
+.imageError {
+  background: #fff1f1;
+  border: 2px dashed #e52f2f;
+
+  /* background-color: red; */
+}
+.imageError label {
+  color: #e52f2f;
+}
+
+.imageError input {
+  color: #fff1f1;
+}
+
+.labelAndErrorWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.labelAndErrorWrapper svg {
+  transform: scale(1.5);
 }

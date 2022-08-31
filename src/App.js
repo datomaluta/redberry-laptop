@@ -39,31 +39,31 @@ function App() {
 
     const data = new FormData();
 
-    // data.append("laptop_image", img);
-    // data.append("token", "1c40792d27465fbe7c55aeb3cead277e");
-    // data.append("name", "დათო");
-    // data.append("surname", "მალუტაშვილი");
-    // data.append("team_id", 1);
-    // data.append("position_id", 1);
-    // data.append("phone_number", "+995591921669");
-    // data.append("email", "dato@redberry.ge");
-    // data.append("laptop_name", "HP");
-    // data.append("laptop_brand_id", 1);
-    // data.append("laptop_cpu", "Apple M1");
-    // data.append("laptop_cpu_cores", 64);
-    // data.append("laptop_cpu_threads", 128);
-    // data.append("laptop_ram", 64);
-    // data.append("laptop_hard_drive_type", "HDD");
-    // data.append("laptop_state", "new");
-    // data.append("laptop_purchase_date", "10-10-2022");
-    // data.append("laptop_price", 1200);
+    data.append("laptop_image", img);
+    data.append("token", "1c40792d27465fbe7c55aeb3cead277e");
+    data.append("name", "დათო");
+    data.append("surname", "მალუტაშვილი");
+    data.append("team_id", 1);
+    data.append("position_id", 1);
+    data.append("phone_number", "+995591921669");
+    data.append("email", "dato@redberry.ge");
+    data.append("laptop_name", "HP");
+    data.append("laptop_brand_id", 1);
+    data.append("laptop_cpu", "Apple M1");
+    data.append("laptop_cpu_cores", 64);
+    data.append("laptop_cpu_threads", 128);
+    data.append("laptop_ram", 64);
+    data.append("laptop_hard_drive_type", "HDD");
+    data.append("laptop_state", "new");
+    data.append("laptop_purchase_date", "10-10-2022");
+    data.append("laptop_price", 1200);
 
     const formKeys = Object.keys(formValues);
 
-    for (let formKey of formKeys) {
-      console.log(formKey, formValues[formKey]);
-      data.append(formKey, formValues[formKey]);
-    }
+    // for (let formKey of formKeys) {
+    //   console.log(formKey, formValues[formKey]);
+    //   data.append(formKey, formValues[formKey]);
+    // }
 
     let res = await axios.post(
       "https://pcfy.redberryinternship.ge/api/laptop/create",

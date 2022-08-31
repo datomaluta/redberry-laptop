@@ -8,7 +8,7 @@ const useInput = (validateValue, isImage = false) => {
   const hasError = !valueIsValid && isTouched;
 
   const setValue = (value) => {
-    console.log(value);
+    // console.log(value);
     setEnteredValue(value);
   };
 

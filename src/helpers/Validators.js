@@ -59,3 +59,11 @@ export const onlyNumberValidator = (value) => {
     return false;
   }
 };
+
+export const imageValidator = (value) => {
+  if (value) {
+    return true;
+  } else {
+    return false;
+  }
+};

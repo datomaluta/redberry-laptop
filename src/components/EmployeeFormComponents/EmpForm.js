@@ -12,7 +12,8 @@ import {
 import { onlyGeorgia } from "../../helpers/Validators";
 
 const Form = () => {
-  const [selectedTeamId, setSelectedTeamId] = useState();
+  const [selectedTeamId, setSelectedTeamId] = useState("");
+  const [selectedPositionId, setSelectedPositionId] = useState("");
 
   const navigate = useNavigate();
 
@@ -73,7 +74,7 @@ const Form = () => {
     reset: resetPositionSelector,
   } = useInput((value) => value !== "");
 
-  console.log(position);
+  // console.log(position);
 
   const {
     value: enteredEmail,
@@ -101,11 +102,25 @@ const Form = () => {
   // find in teams team, which name is equal selected team name
   useEffect(() => {
     if (teams.length > 0 && team.length > 0) {
+      console.log("ki ki ki k i i");
       const selectedObj = teams.find((currTeam) => currTeam.name === team);
+      localStorage.setItem("teamId", selectedObj.id);
       setSelectedTeamId(selectedObj.id);
     }
     // resetPositionSelector();
   }, [team, teams]);
+  console.log(team);
+
+  useEffect(() => {
+    if (positions.length > 0 && position.length > 0) {
+      const selectedObj = positions.find(
+        (currPosition) => currPosition.name === position
+      );
+      localStorage.setItem("positionId", selectedObj.id);
+      // setSelectedTeamId(selectedObj.id);
+    }
+    // resetPositionSelector();
+  }, [position, positions]);
 
   useEffect(() => {
     const name = localStorage.getItem("enteredName");
@@ -177,7 +192,7 @@ const Form = () => {
       return;
     }
 
-    console.log("Next page");
+    // console.log("Next page");
     navigate("/fillout/laptop");
 
     // Reset fields to initial contition
@@ -212,7 +227,7 @@ const Form = () => {
     ? `${classes.invalid}`
     : "";
 
-  console.log(enteredName);
+  // console.log(enteredName);
 
   return (
     <GeneralForm>

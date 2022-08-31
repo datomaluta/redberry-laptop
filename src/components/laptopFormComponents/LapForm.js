@@ -9,6 +9,9 @@ import {
   onlyNumberValidator,
 } from "../../helpers/Validators";
 import WarningIcon from "../../assets/formIcons/WarningIcon";
+import { convertBase64 } from "../../helpers/Converter";
+import { imageValidator } from "../../helpers/Validators";
+import axios from "axios";
 
 const LaptopForm = () => {
   const [selectedImage, setSelectedImage] = useState("");
@@ -24,20 +27,20 @@ const LaptopForm = () => {
   //   setImg(event.target.files[0].name);
   // };
 
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+  // const convertBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
 
-      fileReader.onerror = (error) => {
-        PromiseRejectionEvent(error);
-      };
-    });
-  };
+  //     fileReader.onerror = (error) => {
+  //       PromiseRejectionEvent(error);
+  //     };
+  //   });
+  // };
 
   const {
     error: brandError,
@@ -60,7 +63,7 @@ const LaptopForm = () => {
     valueChangeHandler: imgChangeHandler,
     inputBlurHandler: imgBlurHandler,
     reset: resetImageInput,
-  } = useInput((value) => value, true);
+  } = useInput(imageValidator, true);
   console.log(laptopImage);
 
   useEffect(() => {
@@ -173,8 +176,9 @@ const LaptopForm = () => {
     reset: resetlaptopState,
   } = useInput((value) => value.trim() !== "");
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
+    setLaptopImageIsTouched();
     setLaptopIsTouched();
     setBrandIsTouched();
     setCpuIsTouched();
@@ -185,7 +189,9 @@ const LaptopForm = () => {
     setPurchaseDateIsTouched();
     setPriceIsTouched();
     setLaptopStateIsTouched();
+
     if (
+      !laptopImageIsValid ||
       !laptopNameIsValid ||
       !brandIsValid ||
       !cpuIsValid ||
@@ -196,7 +202,47 @@ const LaptopForm = () => {
     ) {
       return;
     }
-    console.log("request sent");
+
+    // here is request send functionality
+    const formValues = {
+      token: "1c40792d27465fbe7c55aeb3cead277e",
+      laptop_image: laptopImage,
+      name: localStorage.getItem("enteredName"),
+      surname: localStorage.getItem("enteredSurname"),
+      team_id: +localStorage.getItem("teamId"),
+      position_id: +localStorage.getItem("positionId"),
+      phone_number: localStorage.getItem("phoneNumber"),
+      email: localStorage.getItem("email"),
+      laptop_name: laptopName,
+      laptop_brand_id: 1,
+      laptop_cpu: cpu,
+      laptop_cpu_cores: +cpuCore,
+      laptop_cpu_threads: +cpuThread,
+      laptop_ram: +ram,
+      laptop_hard_drive_type: memoryType.toUpperCase(),
+      laptop_state: laptopState,
+      laptop_purchase_date: purchaseDate,
+      laptop_price: +price,
+    };
+    console.log(formValues);
+
+    const data = new FormData();
+
+    const formKeys = Object.keys(formValues);
+
+    for (let formKey of formKeys) {
+      console.log(formKey, formValues[formKey]);
+      data.append(formKey, formValues[formKey]);
+    }
+
+    let res = await axios.post(
+      "https://pcfy.redberryinternship.ge/api/laptop/create",
+      data,
+      {}
+    );
+    console.log(res);
+
+    resetImageInput();
     resetLaptopInput();
     resetBrandSelector();
     resetCpuSelector();
@@ -208,6 +254,10 @@ const LaptopForm = () => {
     resetPriceInput();
     resetlaptopState();
   };
+
+  const laptopImageClasses = laptopImageHasError
+    ? `${classes.imageUploader} ${classes.imageError}`
+    : classes.imageUploader;
 
   const laptopNameClasses = laptopHasError
     ? `${classes.name} ${classes.invalid}`
@@ -259,10 +309,13 @@ const LaptopForm = () => {
 
   return (
     <GeneralForm onSubmit={submitHandler}>
-      <div className={classes.imageUploader}>
-        <label htmlFor="img">
-          ჩააგდე ან ატვრთე <br /> ლეპტოპის ფოტო
-        </label>
+      <div className={laptopImageClasses}>
+        <div className={classes.labelAndErrorWrapper}>
+          {laptopImageHasError && <WarningIcon />}
+          <label htmlFor="img">
+            ჩააგდე ან ატვრთე <br /> ლეპტოპის ფოტო
+          </label>
+        </div>
         <div className={classes.inputImageWrapper}>
           <input
             onChange={imgChangeHandler}
@@ -438,7 +491,7 @@ const LaptopForm = () => {
               type="radio"
               id="secondHanded"
               name="state"
-              value="secondHanded"
+              value="used"
             />
             <label>მეორადი</label>
           </div>
