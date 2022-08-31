@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Link, resolvePath } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
@@ -15,6 +15,9 @@ import axios from "axios";
 
 const LaptopForm = () => {
   const [selectedImage, setSelectedImage] = useState("");
+  const [brandId, setBrandId] = useState("");
+  const [hddIsChecked, setHddIsChecked] = useState(false);
+  const [ssdIsChecked, setSsdIsChecked] = useState(false);
 
   const [baseImage, setBaseImage] = useState("");
   // const [memoryType, setMemoryType] = useState("");
@@ -64,7 +67,6 @@ const LaptopForm = () => {
     inputBlurHandler: imgBlurHandler,
     reset: resetImageInput,
   } = useInput(imageValidator, true);
-  console.log(laptopImage);
 
   useEffect(() => {
     const baseImageSetter = async () => {
@@ -83,6 +85,7 @@ const LaptopForm = () => {
     hasError: laptopHasError,
     valueChangeHandler: laptopNameChangeHandler,
     inputBlurHandler: laptopNameBlurHandler,
+    setValue: setLaptopNameValue,
     reset: resetLaptopInput,
   } = useInput(laptopNameValidator);
 
@@ -93,8 +96,20 @@ const LaptopForm = () => {
     hasError: brandHasError,
     valueChangeHandler: brandChangeHandler,
     inputBlurHandler: brandBlurHandler,
+    setValue: setBrandValue,
     reset: resetBrandSelector,
   } = useInput((value) => value !== "");
+
+  useEffect(() => {
+    if (brands.length > 0 && brand.length > 0) {
+      const selectedBrand = brands.find(
+        (currBrand) => currBrand.name === brand
+      );
+      setBrandId(selectedBrand.id);
+      console.log(selectedBrand.id);
+      localStorage.setItem("brandId", selectedBrand.id);
+    }
+  }, [brands, brand]);
 
   const {
     value: cpu,
@@ -103,6 +118,7 @@ const LaptopForm = () => {
     hasError: cpuHasError,
     valueChangeHandler: cpuChangeHandler,
     inputBlurHandler: cpuBlurHandler,
+    setValue: setCpuValue,
     reset: resetCpuSelector,
   } = useInput((value) => value !== "");
 
@@ -113,6 +129,7 @@ const LaptopForm = () => {
     hasError: cpuCoreHasError,
     valueChangeHandler: cpuCoreChangeHandler,
     inputBlurHandler: cpuCoreBlurHandler,
+    setValue: setCpuCoresValue,
     reset: resetCpuCoreInput,
   } = useInput(onlyNumberValidator);
 
@@ -123,6 +140,7 @@ const LaptopForm = () => {
     hasError: cpuThreadHasError,
     valueChangeHandler: cpuThreadChangeHandler,
     inputBlurHandler: cpuThreadBlurHandler,
+    setValue: setCpuThreadsValue,
     reset: resetCpuThreadInput,
   } = useInput(onlyNumberValidator);
 
@@ -133,6 +151,7 @@ const LaptopForm = () => {
     hasError: ramHasError,
     valueChangeHandler: ramChangeHandler,
     inputBlurHandler: ramBlurHandler,
+    setValue: setRamValue,
     reset: resetRamInput,
   } = useInput(onlyNumberValidator);
 
@@ -142,9 +161,11 @@ const LaptopForm = () => {
     isTouchedHandler: setMemoryTypeIsTouched,
     hasError: memoryTypeHaserror,
     valueChangeHandler: memoryTypeChangeHandler,
+    setValue: setMemoryTypeValue,
     // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetMemoryType,
   } = useInput((value) => value.trim() !== "");
+  console.log(memoryType);
 
   const {
     value: purchaseDate,
@@ -153,6 +174,7 @@ const LaptopForm = () => {
     // hasError: purchaseDateHasError,
     valueChangeHandler: purchaseDateChangeHandler,
     inputBlurHandler: purchaseDateBlurHandler,
+    setValue: setPurchaseDateValue,
     reset: resetPurchaseDate,
   } = useInput((value) => value.trim() !== "");
 
@@ -163,6 +185,7 @@ const LaptopForm = () => {
     hasError: priceHasError,
     valueChangeHandler: priceChangeHandler,
     inputBlurHandler: priceBlurHandler,
+    setValue: setPriceValue,
     reset: resetPriceInput,
   } = useInput(onlyNumberValidator);
 
@@ -172,6 +195,7 @@ const LaptopForm = () => {
     isTouchedHandler: setLaptopStateIsTouched,
     hasError: laptopStateHasError,
     valueChangeHandler: laptopStateChangeHandler,
+    setValue: setLaptopStateValue,
     // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetlaptopState,
   } = useInput((value) => value.trim() !== "");
@@ -213,16 +237,16 @@ const LaptopForm = () => {
       position_id: +localStorage.getItem("positionId"),
       phone_number: localStorage.getItem("phoneNumber"),
       email: localStorage.getItem("email"),
-      laptop_name: laptopName,
-      laptop_brand_id: 1,
-      laptop_cpu: cpu,
-      laptop_cpu_cores: +cpuCore,
-      laptop_cpu_threads: +cpuThread,
-      laptop_ram: +ram,
-      laptop_hard_drive_type: memoryType.toUpperCase(),
-      laptop_state: laptopState,
-      laptop_purchase_date: purchaseDate,
-      laptop_price: +price,
+      laptop_name: localStorage.getItem("laptopName"),
+      laptop_brand_id: +localStorage.getItem("brandId"),
+      laptop_cpu: localStorage.getItem("cpu"),
+      laptop_cpu_cores: +localStorage.getItem("cpuCores"),
+      laptop_cpu_threads: +localStorage.getItem("cpuThreads"),
+      laptop_ram: +localStorage.getItem("ram"),
+      laptop_hard_drive_type: localStorage.getItem("memoryType").toUpperCase(),
+      laptop_state: localStorage.getItem("state"),
+      laptop_purchase_date: localStorage.getItem("purchaseDate"),
+      laptop_price: +localStorage.getItem("price"),
     };
     console.log(formValues);
 
@@ -305,7 +329,64 @@ const LaptopForm = () => {
   //   setBaseImage(base);
   //   console.log(base);
   // };
-  console.log(selectedImage);
+  // console.log(selectedImage);
+
+  useEffect(() => {
+    const name = localStorage.getItem("laptopName");
+    const laptopBrand = localStorage.getItem("laptopBrand");
+    const laptopCpu = localStorage.getItem("cpu");
+    const laptopCpuCores = localStorage.getItem("cpuCores");
+    const laptopCpuThreads = localStorage.getItem("cpuThreads");
+    const laptopRam = localStorage.getItem("ram");
+    const laptopMemoryType = localStorage.getItem("memoryType");
+    const purchaseDate = localStorage.getItem("purchaseDate");
+    const laptopPrice = localStorage.getItem("price");
+    const laptop_state = localStorage.getItem("state");
+
+    setLaptopNameValue(name || "");
+    setBrandValue(laptopBrand || "");
+    setCpuValue(laptopCpu || "");
+    setCpuCoresValue(laptopCpuCores || "");
+    setCpuThreadsValue(laptopCpuThreads || "");
+    setRamValue(laptopRam || "");
+    setMemoryTypeValue(laptopMemoryType || "");
+    setPurchaseDateValue(purchaseDate || "");
+    setPriceValue(laptopPrice || "");
+    setLaptopStateValue(laptop_state || "");
+  }, []);
+
+  useEffect(() => {
+    laptopName && localStorage.setItem("laptopName", laptopName);
+    brand && localStorage.setItem("laptopBrand", brand);
+    cpu && localStorage.setItem("cpu", cpu);
+    cpuCore && localStorage.setItem("cpuCores", cpuCore);
+    cpuThread && localStorage.setItem("cpuThreads", cpuThread);
+    ram && localStorage.setItem("ram", ram);
+    memoryType && localStorage.setItem("memoryType", memoryType);
+    purchaseDate && localStorage.setItem("purchaseDate", purchaseDate);
+    price && localStorage.setItem("price", price);
+    laptopState && localStorage.setItem("state", laptopState);
+  }, [
+    laptopName,
+    brand,
+    cpu,
+    cpuCore,
+    cpuThread,
+    ram,
+    memoryType,
+    purchaseDate,
+    price,
+    laptopState,
+  ]);
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("memoryType") === "hdd") {
+  //     setHddIsChecked(true);
+  //   }
+  //   if (localStorage.getItem("memoryType" === "ssd")) {
+  //     setSsdIsChecked(true);
+  //   }
+  // }, []);
 
   return (
     <GeneralForm onSubmit={submitHandler}>
@@ -435,6 +516,8 @@ const LaptopForm = () => {
                 id="ssd"
                 name="ramType"
                 value="ssd"
+                // checked={ssdIsChecked}
+                checked={memoryType === "ssd"}
               />
               <label>SSD</label>
             </div>
@@ -445,6 +528,8 @@ const LaptopForm = () => {
                 id="hdd"
                 name="ramType"
                 value="hdd"
+                // checked={hddIsChecked}
+                checked={memoryType === "hdd"}
               />
               <label>HDD</label>
             </div>
@@ -482,6 +567,7 @@ const LaptopForm = () => {
               id="new"
               name="state"
               value="new"
+              checked={laptopState === "new"}
             />
             <label>ახალი</label>
           </div>
@@ -492,6 +578,7 @@ const LaptopForm = () => {
               id="secondHanded"
               name="state"
               value="used"
+              checked={laptopState === "used"}
             />
             <label>მეორადი</label>
           </div>

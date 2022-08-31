@@ -55,7 +55,7 @@ function App() {
     data.append("laptop_ram", 64);
     data.append("laptop_hard_drive_type", "HDD");
     data.append("laptop_state", "new");
-    data.append("laptop_purchase_date", "10-10-2022");
+    data.append("laptop_purchase_date", "");
     data.append("laptop_price", 1200);
 
     const formKeys = Object.keys(formValues);
