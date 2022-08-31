@@ -17,7 +17,6 @@
   font-weight: 500;
   background-color: #62a1eb;
   display: block;
-  width: fit-content;
   width: 38.7rem;
   height: 6rem;
   margin-top: 2.6rem;
@@ -25,4 +24,11 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.8rem;
+}
+
+@media (max-width: 390px) {
+  .action {
+    width: 358px;
+    margin-top: 1.6rem;
+  }
 }

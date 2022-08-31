@@ -7,7 +7,7 @@ const FormPageWrapper = (props) => {
     <div className={classes.wrapper}>
       <Header />
       {props.children}
-      <img src={logo} alt="logo" />
+      <img className={classes.logo} src={logo} alt="logo" />
     </div>
   );
 };

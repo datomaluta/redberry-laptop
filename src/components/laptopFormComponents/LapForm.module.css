@@ -33,6 +33,7 @@
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
   text-align: center;
+  display: none;
 }
 .custom-file-input::before {
   font-family: "Helvetica Neue";
@@ -41,24 +42,41 @@
   display: inline-block;
   background: #62a1eb;
   color: #fff;
-  border: 0.1rem solid #999;
+  /* border: 0.1rem solid #999; */
   border-radius: 0.3rem;
   padding-top: 1.8rem;
   padding-bottom: 1.8rem;
   outline: none;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   -webkit-user-select: none;
   cursor: pointer;
   /* text-shadow: 1px 1px #fff; */
   font-weight: 500;
   font-size: 2rem;
 }
-/* .custom-file-input:hover::before {
-    border-color: black;
-  }
-  .custom-file-input:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-  } */
+
+.uploadedImage {
+  width: 210px;
+  height: 120px;
+  border-radius: 10px;
+}
+
+.inputImageWrapper {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-file-input:focus::before {
+  /* background: red; */
+}
+.custom-file-input:hover::before {
+  /* border-color: black; */
+}
+.custom-file-input:active::before {
+  /* background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); */
+}
 
 .bottomLabel {
   font-weight: 300;

@@ -114,14 +114,13 @@ const Form = () => {
     const position = localStorage.getItem("position");
     const email = localStorage.getItem("email");
     const phoneNumber = localStorage.getItem("phoneNumber");
-    console.log(name);
-    setNameValue(name);
-    setSurnameValue(surname);
-    setTeamValue(team);
-    setPositionValue(position);
-    setEmailValue(email);
-    setPhoneNumberValue(phoneNumber);
-    console.log(position);
+
+    setNameValue(name || "");
+    setSurnameValue(surname || "");
+    setTeamValue(team || "");
+    setPositionValue(position || "");
+    setEmailValue(email || "");
+    setPhoneNumberValue(phoneNumber || "");
   }, []);
 
   useEffect(() => {
@@ -179,6 +178,7 @@ const Form = () => {
     }
 
     console.log("Next page");
+    navigate("/fillout/laptop");
 
     // Reset fields to initial contition
     resetNameInput();

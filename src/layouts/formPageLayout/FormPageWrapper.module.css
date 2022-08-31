@@ -10,3 +10,12 @@
   padding-top: 9.1rem;
   padding-bottom: 5.3rem;
 }
+
+@media (max-width: 390px) {
+  .logo {
+    display: none;
+  }
+  .wrapper {
+    padding-bottom: 0;
+  }
+}

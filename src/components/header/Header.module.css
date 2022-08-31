@@ -31,3 +31,9 @@
 .active {
   border-bottom: 0.2rem solid #232323;
 }
+
+@media (max-width: 390px) {
+  .header {
+    display: none;
+  }
+}

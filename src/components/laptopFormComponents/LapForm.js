@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, resolvePath } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./LapForm.module.css";
@@ -12,6 +12,8 @@ import WarningIcon from "../../assets/formIcons/WarningIcon";
 
 const LaptopForm = () => {
   const [selectedImage, setSelectedImage] = useState("");
+
+  const [baseImage, setBaseImage] = useState("");
   // const [memoryType, setMemoryType] = useState("");
   // const imgRef = useRef();
   // const [img, setImg] = useState("");
@@ -21,7 +23,21 @@ const LaptopForm = () => {
   //   console.log(event.target.files[0]);
   //   setImg(event.target.files[0].name);
   // };
-  // console.log(img);
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        PromiseRejectionEvent(error);
+      };
+    });
+  };
 
   const {
     error: brandError,
@@ -35,6 +51,27 @@ const LaptopForm = () => {
     fetchBrands("brands");
     fetchCpus("cpus");
   }, [fetchBrands, fetchCpus]);
+
+  const {
+    value: laptopImage,
+    isValid: laptopImageIsValid,
+    isTouchedHandler: setLaptopImageIsTouched,
+    hasError: laptopImageHasError,
+    valueChangeHandler: imgChangeHandler,
+    inputBlurHandler: imgBlurHandler,
+    reset: resetImageInput,
+  } = useInput((value) => value, true);
+  console.log(laptopImage);
+
+  useEffect(() => {
+    const baseImageSetter = async () => {
+      const base = await convertBase64(laptopImage);
+      setBaseImage(base);
+    };
+    if (laptopImage) {
+      baseImageSetter();
+    }
+  }, [laptopImage]);
 
   const {
     value: laptopName,
@@ -212,9 +249,12 @@ const LaptopForm = () => {
     // setMemoryType(event.target.value);
   };
 
-  const imgChangeHandler = (event) => {
-    setSelectedImage(event.target.files[0]);
-  };
+  // const imgChangeHandler = async (event) => {
+  //   setSelectedImage(event.target.files[0]);
+  //   const base = await convertBase64(event.target.files[0]);
+  //   setBaseImage(base);
+  //   console.log(base);
+  // };
   console.log(selectedImage);
 
   return (
@@ -223,13 +263,17 @@ const LaptopForm = () => {
         <label htmlFor="img">
           ჩააგდე ან ატვრთე <br /> ლეპტოპის ფოტო
         </label>
-        <input
-          onChange={imgChangeHandler}
-          id="img"
-          className={classes["custom-file-input"]}
-          type="file"
-        />
-        {/* <span>{img}</span> */}
+        <div className={classes.inputImageWrapper}>
+          <input
+            onChange={imgChangeHandler}
+            id="img"
+            className={classes["custom-file-input"]}
+            type="file"
+          />
+          {baseImage && (
+            <img className={classes.uploadedImage} src={baseImage} />
+          )}
+        </div>
       </div>
       <div className={classes.names}>
         <div className={laptopNameClasses}>

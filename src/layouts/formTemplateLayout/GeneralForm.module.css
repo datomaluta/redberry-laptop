@@ -20,6 +20,7 @@
 }
 
 .form input {
+  font-family: "Helvetica Neue";
   display: block;
   font-weight: 500;
   font-size: 1.8rem;
@@ -63,4 +64,20 @@
 .form input:focus {
   background: rgba(43, 75, 242, 0.06);
   border: 0.1rem solid #6499ff;
+}
+
+.form input[type="file"]:focus {
+  background: #fff;
+  border: none;
+}
+
+@media (max-width: 390px) {
+  .form {
+    width: 100%;
+    padding: 38px 16px 55px;
+    /* background-color: red; */
+    border-radius: 12px 12px 0px 0px;
+    margin-bottom: 0;
+    gap: 23px;
+  }
 }

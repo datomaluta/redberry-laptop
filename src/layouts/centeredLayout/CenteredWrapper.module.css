@@ -7,3 +7,15 @@
   height: 108rem;
   width: 100%;
 }
+
+@media (max-width: 390px) {
+  .centered {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* background-color: blue; */
+    height: 844px;
+    width: 100%;
+  }
+}

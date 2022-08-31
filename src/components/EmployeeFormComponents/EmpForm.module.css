@@ -57,3 +57,15 @@
 .error select {
   border: 2px solid #e52f2f;
 }
+
+@media (max-width: 390px) {
+  .names {
+    display: block;
+  }
+  .firstName {
+    margin-bottom: 23px;
+  }
+  .teamSelector {
+    margin-bottom: 23px;
+  }
+}

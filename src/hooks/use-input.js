@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useInput = (validateValue) => {
+const useInput = (validateValue, isImage = false) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);
 
@@ -13,7 +13,11 @@ const useInput = (validateValue) => {
   };
 
   const valueChangeHandler = (event) => {
-    setEnteredValue(event.target.value);
+    if (isImage) {
+      setEnteredValue(event.target.files[0]);
+    } else {
+      setEnteredValue(event.target.value);
+    }
     // localStorage.setItem(`enteredValue`, event.target.value);
   };
 

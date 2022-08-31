@@ -5,3 +5,16 @@
   gap: 8rem;
   margin-top: 8rem;
 }
+
+.responsiveImage {
+  display: none;
+}
+
+@media (max-width: 390px) {
+  .bigImage {
+    display: none;
+  }
+  .responsiveImage {
+    display: block;
+  }
+}
