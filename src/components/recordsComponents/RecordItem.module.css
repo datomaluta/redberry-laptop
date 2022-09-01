@@ -48,3 +48,35 @@
   font-size: 1.6rem;
   color: #4386a9;
 }
+
+@media (max-width: 390px) {
+  .item {
+    width: 100%;
+    padding: 0.7rem 1.4rem 0.7rem 0.7rem;
+    height: 123px;
+  }
+
+  .imgWrapper {
+    width: 164px;
+    height: 109px;
+
+    object-fit: cover;
+  }
+
+  .personName {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #2e2e2e;
+    margin-top: 1.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .laptopName {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 21px;
+    color: #2e2e2e;
+    margin-bottom: 1.1rem;
+  }
+}

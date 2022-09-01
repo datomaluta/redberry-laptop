@@ -63,6 +63,10 @@
   background-color: rgb(255, 255, 255);
 }
 
+.form select option:hover {
+  background: #e7f0f8;
+}
+
 .form input::placeholder {
   font-family: "Helvetica Neue";
   font-style: normal;

@@ -10,10 +10,16 @@ import {
   phoneNumberValidator,
 } from "../../helpers/Validators";
 import { onlyGeorgia } from "../../helpers/Validators";
+import Dropdown from "../dropdown/Dropdown";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
   const [selectedPositionId, setSelectedPositionId] = useState("");
+  const [selectedTeam, setSelectedTeam] = useState("");
+  const [selectedTeamIsTouched, setSelectedTeamIsTouched] = useState(false);
+  const [selectedPosition, setSelectedPosition] = useState("");
+  const [teamId, setTeamId] = useState("");
+  const [filteredPositions, setFilteredPositions] = useState([]);
 
   const navigate = useNavigate();
 
@@ -192,7 +198,9 @@ const Form = () => {
       !teamIsValid ||
       !positionIsValid ||
       !enteredEmailIsValid ||
-      !enteredPhoneNumberIsValid
+      !enteredPhoneNumberIsValid ||
+      !selectedTeam ||
+      !selectedPosition
     ) {
       return;
     }
@@ -234,8 +242,53 @@ const Form = () => {
 
   // console.log(enteredName);
 
+  const selectTeamHandler = (team) => {
+    setSelectedTeam(team);
+  };
+
+  const selectPositionHandler = (position) => {
+    setSelectedPosition(position);
+  };
+
+  useEffect(() => {
+    if (teams.length > 0 && positions.length > 0) {
+      console.log(teams);
+      console.log(selectedTeam);
+      const teamOne = teams.find((curTeam) => curTeam.name === selectedTeam);
+      setTeamId(teamOne.id);
+      console.log(teamOne);
+      const filtered = positions.filter(
+        (position) => position["team_id"] === teamOne.id
+      );
+      setFilteredPositions(filtered);
+    }
+  }, [selectedTeam]);
+  console.log(selectedTeam);
+
+  const touchHandler = () => {
+    setSelectedTeamIsTouched(true);
+  };
+
   return (
     <GeneralForm>
+      <Dropdown
+        setSelect={selectTeamHandler}
+        currentValue={selectedTeam}
+        values={teams}
+        defaultValue="თიმი"
+        disabled={false}
+        onTouch={touchHandler}
+        hasError={selectedTeam.length === 0 && selectedTeamIsTouched}
+      />
+      <Dropdown
+        setSelect={selectPositionHandler}
+        currentValue={selectedPosition}
+        values={filteredPositions}
+        defaultValue="პოზიცია"
+        disabled={!selectedTeam}
+        hasError={selectedPosition.length === 0}
+      />
+      {/* <Dropdown /> */}
       {(teamError || positionError) && <h2>{teamError || positionError}</h2>}
       <div className={classes.names}>
         <div className={nameClasses}>

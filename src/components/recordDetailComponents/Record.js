@@ -129,7 +129,7 @@ const Record = (props) => {
               <p>CPU-ს ბირთვი:</p>
               <p>CPU-ს ნაკადი:</p>
             </div>
-            <div className={classes.values}>
+            <div className={`${classes.values} ${classes.certainCpu}`}>
               <p>{laptop.cpu.name}</p>
               <p>{laptop.cpu.cores}</p>
               <p>{laptop.cpu.threads}</p>
@@ -139,7 +139,8 @@ const Record = (props) => {
         <div className={classes.restOfLaptop}>
           <div className={classes.leftSide}>
             <div className={classes.titles}>
-              <p>ლეპტოპის მდგომარეობა:</p>
+              <p className={classes.bigState}>ლეპტოპის მდგომარეობა:</p>
+              <p className={classes.responsiveState}>მდგომარეობა:</p>
               <p>ლეპტოპის ფასი:</p>
             </div>
             <div className={`${classes.values} ${classes.certainRest}`}>

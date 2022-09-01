@@ -3,9 +3,10 @@
   display: flex;
   justify-content: space-between;
   gap: 55px;
-  background-color: red;
+  /* background-color: red; */
   flex-wrap: wrap;
   margin: 0 auto;
+  padding-bottom: 168px;
 }
 
 .heading {
@@ -14,4 +15,21 @@
   margin-top: 7.9rem;
   margin-bottom: 7.9rem;
   text-align: center;
+}
+
+@media (max-width: 390px) {
+  .list {
+    width: 358px;
+    gap: 26px;
+    margin-bottom: 51px;
+    padding-bottom: 51px;
+  }
+
+  .heading {
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 3.1rem;
+    margin-bottom: 3.1rem;
+    text-align: center;
+  }
 }

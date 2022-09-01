@@ -65,3 +65,15 @@
   border: none;
   text-decoration: none;
 }
+
+@media (max-width: 390px) {
+  .popup {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .popup h2 {
+    margin-bottom: 15.9rem;
+  }
+}
