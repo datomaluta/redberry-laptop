@@ -10,7 +10,7 @@ const Popup = () => {
       </div>
       <h2>ჩანაწერი დამატებულია!</h2>
       <div className={classes.actions}>
-        <Link className={classes.action} to="/">
+        <Link className={classes.action} to="/records">
           სიაში გადაყვანა
         </Link>
         <Link className={classes.generalAction} to="/">

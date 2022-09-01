@@ -102,14 +102,13 @@ const Form = () => {
   // find in teams team, which name is equal selected team name
   useEffect(() => {
     if (teams.length > 0 && team.length > 0) {
-      console.log("ki ki ki k i i");
+      // console.log("ki ki ki k i i");
       const selectedObj = teams.find((currTeam) => currTeam.name === team);
       localStorage.setItem("teamId", selectedObj.id);
       setSelectedTeamId(selectedObj.id);
     }
     // resetPositionSelector();
   }, [team, teams]);
-  console.log(team);
 
   useEffect(() => {
     if (positions.length > 0 && position.length > 0) {
@@ -123,7 +122,9 @@ const Form = () => {
   }, [position, positions]);
 
   useEffect(() => {
+    console.log("FIRST EFFECT");
     const name = localStorage.getItem("enteredName");
+    console.log(name);
     const surname = localStorage.getItem("enteredSurname");
     const team = localStorage.getItem("team");
     const position = localStorage.getItem("position");
@@ -137,9 +138,13 @@ const Form = () => {
     setEmailValue(email || "");
     setPhoneNumberValue(phoneNumber || "");
   }, []);
+  console.log(enteredName);
 
   useEffect(() => {
+    console.log("SECOND EFFECT");
     if (enteredName.trim() !== "") {
+      console.log("if block-shi shemovida");
+      console.log(enteredName || "ar aris");
       localStorage.setItem("enteredName", enteredName);
     }
     if (enteredSurname.trim() !== "") {

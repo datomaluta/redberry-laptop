@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const useInput = (validateValue, isImage = false) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -7,10 +7,10 @@ const useInput = (validateValue, isImage = false) => {
   const valueIsValid = validateValue(enteredValue);
   const hasError = !valueIsValid && isTouched;
 
-  const setValue = (value) => {
+  const setValue = useCallback((value) => {
     // console.log(value);
     setEnteredValue(value);
-  };
+  }, []);
 
   const valueChangeHandler = (event) => {
     if (isImage) {

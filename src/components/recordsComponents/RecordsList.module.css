@@ -1,8 +1,9 @@
 .list {
   width: 1200px;
   display: flex;
+  justify-content: space-between;
   gap: 55px;
-  /* background-color: red; */
+  background-color: red;
   flex-wrap: wrap;
   margin: 0 auto;
 }

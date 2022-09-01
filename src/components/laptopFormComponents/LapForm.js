@@ -12,6 +12,9 @@ import WarningIcon from "../../assets/formIcons/WarningIcon";
 import { convertBase64 } from "../../helpers/Converter";
 import { imageValidator } from "../../helpers/Validators";
 import axios from "axios";
+import { clearLocalStorage } from "../../helpers/LocalStorageFunctions";
+import { useNavigate } from "react-router-dom";
+import cameraPhoto from "../../assets/formimages/photoCamera.png";
 
 const LaptopForm = () => {
   const [selectedImage, setSelectedImage] = useState("");
@@ -20,6 +23,7 @@ const LaptopForm = () => {
   const [ssdIsChecked, setSsdIsChecked] = useState(false);
 
   const [baseImage, setBaseImage] = useState("");
+  const navigate = useNavigate();
   // const [memoryType, setMemoryType] = useState("");
   // const imgRef = useRef();
   // const [img, setImg] = useState("");
@@ -245,7 +249,7 @@ const LaptopForm = () => {
       laptop_ram: +localStorage.getItem("ram"),
       laptop_hard_drive_type: localStorage.getItem("memoryType").toUpperCase(),
       laptop_state: localStorage.getItem("state"),
-      laptop_purchase_date: localStorage.getItem("purchaseDate"),
+      laptop_purchase_date: localStorage.getItem("purchaseDate") || "",
       laptop_price: +localStorage.getItem("price"),
     };
     console.log(formValues);
@@ -265,6 +269,9 @@ const LaptopForm = () => {
       {}
     );
     console.log(res);
+
+    clearLocalStorage();
+    navigate("/success");
 
     resetImageInput();
     resetLaptopInput();
@@ -339,7 +346,11 @@ const LaptopForm = () => {
     const laptopCpuThreads = localStorage.getItem("cpuThreads");
     const laptopRam = localStorage.getItem("ram");
     const laptopMemoryType = localStorage.getItem("memoryType");
-    const purchaseDate = localStorage.getItem("purchaseDate");
+    const purchaseDate = localStorage
+      .getItem("purchaseDate")
+      ?.split("-")
+      .join("/");
+    console.log(purchaseDate);
     const laptopPrice = localStorage.getItem("price");
     const laptop_state = localStorage.getItem("state");
 
@@ -353,7 +364,19 @@ const LaptopForm = () => {
     setPurchaseDateValue(purchaseDate || "");
     setPriceValue(laptopPrice || "");
     setLaptopStateValue(laptop_state || "");
-  }, []);
+  }, [
+    setLaptopNameValue,
+    setBrandValue,
+    setCpuValue,
+    setCpuCoresValue,
+    setCpuThreadsValue,
+    setRamValue,
+    setMemoryTypeValue,
+    setPurchaseDateValue,
+    setPriceValue,
+    setLaptopStateValue,
+  ]);
+  console.log(purchaseDate);
 
   useEffect(() => {
     laptopName && localStorage.setItem("laptopName", laptopName);
@@ -363,7 +386,8 @@ const LaptopForm = () => {
     cpuThread && localStorage.setItem("cpuThreads", cpuThread);
     ram && localStorage.setItem("ram", ram);
     memoryType && localStorage.setItem("memoryType", memoryType);
-    purchaseDate && localStorage.setItem("purchaseDate", purchaseDate);
+    purchaseDate &&
+      localStorage.setItem("purchaseDate", purchaseDate.split("/").join("-"));
     price && localStorage.setItem("price", price);
     laptopState && localStorage.setItem("state", laptopState);
   }, [
@@ -393,9 +417,10 @@ const LaptopForm = () => {
       <div className={laptopImageClasses}>
         <div className={classes.labelAndErrorWrapper}>
           {laptopImageHasError && <WarningIcon />}
-          <label htmlFor="img">
+          <label className={classes.imgLabel} htmlFor="img">
             ჩააგდე ან ატვრთე <br /> ლეპტოპის ფოტო
           </label>
+          <img className={classes.cameraIcon} src={cameraPhoto} alt="camera" />
         </div>
         <div className={classes.inputImageWrapper}>
           <input
@@ -450,6 +475,7 @@ const LaptopForm = () => {
       <div className={classes.cpuInfo}>
         <div className={cpuClasses}>
           <select
+            className={classes.cpuSelect}
             value={cpu}
             onChange={cpuChangeHandler}
             onBlur={cpuBlurHandler}
@@ -543,7 +569,8 @@ const LaptopForm = () => {
             value={purchaseDate}
             onChange={purchaseDateChangeHandler}
             onBlur={purchaseDateBlurHandler}
-            type="date"
+            placeholder="დდ / თთ / წწ"
+            // type="date"
           />
         </div>
         <div className={priceClasses}>

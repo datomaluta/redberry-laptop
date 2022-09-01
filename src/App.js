@@ -119,9 +119,9 @@ function App() {
   return (
     <div className="App">
       {/* <EmployeeForm /> */}
-      <input type="file" onChange={imgHandler} />
-      <button onClick={upload}>Upload</button>
-      <img src={img} />
+      {/* <input type="file" onChange={imgHandler} /> */}
+      {/* <button onClick={upload}>Upload</button> */}
+      {/* <img src={img} /> */}
 
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />

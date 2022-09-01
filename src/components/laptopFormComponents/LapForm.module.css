@@ -30,6 +30,10 @@
   text-align: center;
 }
 
+.cameraIcon {
+  display: none;
+}
+
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
   text-align: center;
@@ -245,4 +249,81 @@
 
 .labelAndErrorWrapper svg {
   transform: scale(1.5);
+}
+
+@media (max-width: 390px) {
+  .cameraIcon {
+    display: block;
+  }
+  .imgLabel {
+    display: none;
+  }
+  .custom-file-input::before {
+    content: "ლეპტოპის ფოტოს \A ატვირთვა";
+    white-space: pre; /* or pre-wrap */
+    background: none;
+    color: #4386a9;
+    line-height: 30px;
+  }
+
+  .imageUploader {
+    gap: 1rem;
+    padding-top: 4.3rem;
+    padding-bottom: 2.8rem;
+    position: relative;
+  }
+
+  .imageError .custom-file-input::before {
+    color: #e52f2f;
+  }
+
+  .labelAndErrorWrapper svg {
+    position: absolute;
+    bottom: 25px;
+    transform: scale(1.2);
+  }
+
+  .names {
+    display: block;
+    /* border-bottom: 4px solid #ebebeb; */
+    border: none;
+  }
+
+  .name {
+    margin-bottom: 23px;
+  }
+  .cpuInfo {
+    /* background-color: red; */
+
+    flex-direction: column;
+    gap: 2.3rem;
+  }
+
+  .cpuSelect {
+    margin-bottom: 15px;
+  }
+
+  .ramInfo {
+    flex-direction: column;
+    gap: 2.3rem;
+  }
+
+  .dateAndPrice {
+    flex-direction: column;
+    gap: 2.3rem;
+  }
+
+  .date {
+    margin-top: 60px;
+  }
+
+  .actions {
+    margin-top: 6rem;
+    margin-bottom: 4.8rem;
+  }
+  .save {
+    color: #fff;
+    padding: 1.2rem 1.4rem;
+    font-size: 1.8rem;
+  }
 }

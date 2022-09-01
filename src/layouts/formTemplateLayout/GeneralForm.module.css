@@ -59,6 +59,10 @@
   font-size: 1.8rem;
 }
 
+.form select:focus {
+  background-color: rgb(255, 255, 255);
+}
+
 .form input::placeholder {
   font-family: "Helvetica Neue";
   font-style: normal;

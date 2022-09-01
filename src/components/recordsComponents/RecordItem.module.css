@@ -1,5 +1,6 @@
 .item {
   background-color: #eafaff;
+  width: 563px;
   display: flex;
   gap: 2.8rem;
   border-radius: 2rem;
@@ -12,6 +13,7 @@
   width: 266px;
   height: 178px;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .imgWrapper img {
