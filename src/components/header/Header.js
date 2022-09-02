@@ -6,6 +6,18 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
+      {location.pathname === "/fillout/personal" && (
+        <div className={classes.headerInfo}>
+          <p>თანამშრომლის ინფო</p>
+          <span>1/2</span>
+        </div>
+      )}
+      {location.pathname === "/fillout/laptop" && (
+        <div className={classes.headerInfo}>
+          <p> ლეპტოპის მახასიათებლები</p>
+          <span>2/2</span>
+        </div>
+      )}
       <nav>
         <ul>
           <li
@@ -15,6 +27,7 @@ const Header = () => {
           >
             თანამშრომლის ინფო
           </li>
+
           <li
             className={`${
               location.pathname === "/fillout/laptop" ? classes.active : ""

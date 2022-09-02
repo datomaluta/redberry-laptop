@@ -20,6 +20,10 @@
   padding-bottom: 10px;
 }
 
+.headerInfo {
+  display: none;
+}
+
 .header a {
   text-decoration: none;
   font-weight: 700;
@@ -32,8 +36,31 @@
   border-bottom: 0.2rem solid #232323;
 }
 
+.headerInfo {
+  text-align: center;
+}
+
+.headerInfo p {
+  font-size: 16px;
+  color: #232323;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.headerInfo span {
+  font-size: 14px;
+  color: #898989;
+}
+
 @media (max-width: 390px) {
   .header {
+    margin-bottom: 1rem;
+    /* background-color: rebeccapurple; */
+  }
+  .header nav {
     display: none;
+  }
+  .headerInfo {
+    display: block;
   }
 }
