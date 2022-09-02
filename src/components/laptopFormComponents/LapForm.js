@@ -5,6 +5,7 @@ import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./LapForm.module.css";
 import useHttp from "../../hooks/use-http";
 import {
+  dateValidator,
   laptopNameValidator,
   onlyNumberValidator,
 } from "../../helpers/Validators";
@@ -19,9 +20,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import cameraPhoto from "../../assets/formimages/photoCamera.png";
 import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
+import LoadingSpinner from "../../UI/LoadingSpinner";
 
 const LaptopForm = () => {
   const [requestError, setRequestError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [brandId, setBrandId] = useState("");
   const [hddIsChecked, setHddIsChecked] = useState(false);
@@ -154,17 +157,15 @@ const LaptopForm = () => {
 
   const {
     value: purchaseDate,
-    // isValid: purchaseDateIsValid,
+    isValid: purchaseDateIsValid,
     isTouchedHandler: setPurchaseDateIsTouched,
-    // hasError: purchaseDateHasError,
+    hasError: purchaseDateHasError,
     valueChangeHandler: purchaseDateChangeHandler,
     inputBlurHandler: purchaseDateBlurHandler,
 
     reset: resetPurchaseDate,
-  } = useInput(
-    (value) => value.trim() !== "",
-    laptopDataFromlocal?.purchaseDate
-  );
+  } = useInput(dateValidator, laptopDataFromlocal?.purchaseDate);
+  console.log(purchaseDate.length);
 
   const {
     value: price,
@@ -249,11 +250,13 @@ const LaptopForm = () => {
 
     try {
       setRequestError(null);
+      setIsLoading(true);
       let res = await axios.post(
         "https://pcfy.redberryinternship.ge/api/laptop/create",
         data,
         {}
       );
+      setIsLoading(false);
       navigate("/success");
       console.log(res);
       resetImageInput();
@@ -270,10 +273,41 @@ const LaptopForm = () => {
     } catch (err) {
       console.log("hello from errror");
       setRequestError("Request error, Something went wrong!");
+      setIsLoading(false);
     }
 
     // clearLocalStorage();
   };
+
+  // when one of this field change, local storage also be updated
+  useEffect(() => {
+    const laptopData = {
+      laptopName: laptopName,
+      brand: brand,
+      brandId: brandId,
+      cpu: cpu,
+      cpuCore: cpuCore,
+      cpuThread: cpuThread,
+      ram: ram,
+      state: laptopState,
+      memoryType: memoryType,
+      purchaseDate: purchaseDate,
+      price: price,
+    };
+    localStorage.setItem("laptopData", JSON.stringify(laptopData));
+  }, [
+    laptopName,
+    brand,
+    cpu,
+    cpuCore,
+    cpuThread,
+    ram,
+    memoryType,
+    purchaseDate,
+    price,
+    laptopState,
+    brandId,
+  ]);
 
   const laptopImageClasses = laptopImageHasError
     ? `${classes.imageUploader} ${classes.imageError}`
@@ -314,38 +348,13 @@ const LaptopForm = () => {
     ? ` ${classes.radioInvalid}`
     : "";
 
-  // when one of this field change, local storage also be updated
-  useEffect(() => {
-    const laptopData = {
-      laptopName: laptopName,
-      brand: brand,
-      brandId: brandId,
-      cpu: cpu,
-      cpuCore: cpuCore,
-      cpuThread: cpuThread,
-      ram: ram,
-      state: laptopState,
-      memoryType: memoryType,
-      purchaseDate: purchaseDate,
-      price: price,
-    };
-    localStorage.setItem("laptopData", JSON.stringify(laptopData));
-  }, [
-    laptopName,
-    brand,
-    cpu,
-    cpuCore,
-    cpuThread,
-    ram,
-    memoryType,
-    purchaseDate,
-    price,
-    laptopState,
-    brandId,
-  ]);
+  const dateClasses = purchaseDateHasError
+    ? `${classes.date} ${classes.invalid}`
+    : classes.date;
 
   return (
     <GeneralForm onSubmit={submitHandler}>
+      {isLoading && <LoadingSpinner />}
       {requestError && <h1>{requestError}</h1>}
       <div className={laptopImageClasses}>
         <div className={classes.labelAndErrorWrapper}>
@@ -496,7 +505,7 @@ const LaptopForm = () => {
         </div>
       </div>
       <div className={classes.dateAndPrice}>
-        <div className={classes.date}>
+        <div className={dateClasses}>
           <label>შეძენის რიცხვი(არჩევითი)</label>
           <input
             value={purchaseDate}

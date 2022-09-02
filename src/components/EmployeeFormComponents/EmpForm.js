@@ -360,13 +360,7 @@ const Form = () => {
           type="email"
           placeholder="grish666@redberry.ge"
         />
-        {emailInputHasError ? (
-          <p>შეიყვანე ვალიდური მეილი</p>
-        ) : (
-          <p className={classes.bottomLabel}>
-            უნდა მთავრდებოდეს @redberry.ge-ით
-          </p>
-        )}
+        <p className={classes.bottomLabel}>უნდა მთავრდებოდეს @redberry.ge-ით</p>
       </div>
       <div className={phoneNumberClasses}>
         <label>ტელეფონის ნომერი</label>
@@ -376,13 +370,9 @@ const Form = () => {
           onBlur={phoneNumberBlurHandler}
           placeholder="+995 598 00 07 01"
         />
-        {phoneNumberInputHasError ? (
-          <p>შეიყვანე ვალიდური ნომერი</p>
-        ) : (
-          <p className={classes.bottomLabel}>
-            უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს
-          </p>
-        )}
+        <p className={classes.bottomLabel}>
+          უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს
+        </p>
       </div>
       <div className={classes.btnWrapper}>
         <button onClick={nextPageHandler}>შემდეგი</button>

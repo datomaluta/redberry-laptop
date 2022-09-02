@@ -33,7 +33,7 @@
 .bottomLabel {
   font-weight: 300;
   font-size: 1.4rem;
-  margin-top: 0.7rem;
+  margin-top: 0.5rem;
   color: #2e2e2e;
   transition: all 0.3s;
 }
@@ -44,7 +44,7 @@
 }
 
 .invalid input {
-  border: 1px solid #e52f2f;
+  border: 1.8px solid #e52f2f;
 }
 
 .invalid p {

@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import LoadingSpinner from "../../UI/LoadingSpinner";
 import RecordItem from "./RecordItem";
 import classes from "./RecordsList.module.css";
 
@@ -30,13 +31,16 @@ import classes from "./RecordsList.module.css";
 // ];
 
 const Records = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchLaptops = async () => {
+      setIsLoading(true);
       const response = await fetch(
         "https://pcfy.redberryinternship.ge/api/laptops?token=1c40792d27465fbe7c55aeb3cead277e"
       );
       const data = await response.json();
+      setIsLoading(false);
       console.log(data.data);
       setData(data.data);
     };
@@ -44,6 +48,7 @@ const Records = () => {
   }, []);
   return (
     <Fragment>
+      {isLoading && <LoadingSpinner />}
       <h1 className={classes.heading}>ჩანაწერების სია</h1>
       <section className={classes.list}>
         {data.length > 0 &&

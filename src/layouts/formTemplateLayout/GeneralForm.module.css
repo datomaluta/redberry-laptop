@@ -23,14 +23,14 @@
   font-family: "Helvetica Neue";
   display: block;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   line-height: 2.1rem;
   margin-top: 0.8rem;
   width: 100%;
   padding: 1.5rem 1rem;
   border-radius: 0.8rem;
   outline: none;
-  border: 0.1rem solid #8ac0e2;
+  border: 0.18rem solid #8ac0e2;
   transition: all 0.3s;
 }
 
@@ -77,7 +77,7 @@
 
 .form input:focus {
   background: rgba(43, 75, 242, 0.06);
-  border: 0.1rem solid #6499ff;
+  border: 0.18rem solid #6499ff;
 }
 
 .form input[type="file"]:focus {

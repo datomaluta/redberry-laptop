@@ -67,3 +67,15 @@ export const imageValidator = (value) => {
     return false;
   }
 };
+
+export const dateValidator = (value) => {
+  const dateFormat =
+    /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+
+  if (value.match(dateFormat) || value.length === 0) {
+    console.log("matches");
+    return true;
+  } else {
+    return false;
+  }
+};

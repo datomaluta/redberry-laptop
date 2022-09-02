@@ -10,10 +10,10 @@
 
 .action {
   font-family: "Helvetica Neue";
-
+  font-variant-caps: all-small-caps;
   text-decoration: none;
   color: #fff;
-  font-size: 2rem;
+  font-size: 3rem;
   line-height: 2.4rem;
   font-weight: 500;
   background-color: #62a1eb;
@@ -25,12 +25,15 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.8rem;
+  transition: all 0.3s;
 }
-.uppercase {
-  font-family: "Helvetica Neue";
-  font-variant-caps: all-small-caps;
-  font-size: 30px;
-  font-weight: 700;
+
+.action:hover {
+  background: #317ad0;
+}
+
+.action:focus {
+  background: #1a5dab;
 }
 
 @media (max-width: 390px) {
