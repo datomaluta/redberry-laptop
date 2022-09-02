@@ -1,8 +1,6 @@
 import { useCallback, useState } from "react";
 
 const useInput = (validateValue, initialValue = "", isImage = false) => {
-  console.log(initialValue);
-
   const [enteredValue, setEnteredValue] = useState(initialValue);
   const [isTouched, setIsTouched] = useState(false);
 
@@ -19,6 +17,11 @@ const useInput = (validateValue, initialValue = "", isImage = false) => {
     } else {
       setEnteredValue(event.target.value);
     }
+  };
+
+  const test = {
+    enteredName: "dato",
+    enteredSurname: "maluta",
   };
 
   const inputBlurHandler = (event) => {

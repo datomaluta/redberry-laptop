@@ -12,10 +12,13 @@ import WarningIcon from "../../assets/formIcons/WarningIcon";
 import { convertBase64 } from "../../helpers/Converter";
 import { imageValidator } from "../../helpers/Validators";
 import axios from "axios";
-import { clearLocalStorage } from "../../helpers/LocalStorageFunctions";
+import {
+  clearLocalStorage,
+  getDataFromLocalStorage2,
+} from "../../helpers/LocalStorageFunctions";
 import { useNavigate } from "react-router-dom";
 import cameraPhoto from "../../assets/formimages/photoCamera.png";
-import { getDataFromLocalStorage } from "../../helpers/LocStorageFunctions";
+import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
 
 const LaptopForm = () => {
   const [selectedImage, setSelectedImage] = useState("");
@@ -25,6 +28,9 @@ const LaptopForm = () => {
 
   const [baseImage, setBaseImage] = useState("");
   const navigate = useNavigate();
+  const laptopDataFromlocal = getDataFromLocalStorage2("laptopData");
+  const userDataFromLocal = getDataFromLocalStorage2("userData");
+  console.log(laptopDataFromlocal);
   // const [memoryType, setMemoryType] = useState("");
   // const imgRef = useRef();
   // const [img, setImg] = useState("");
@@ -93,7 +99,7 @@ const LaptopForm = () => {
     inputBlurHandler: laptopNameBlurHandler,
     setValue: setLaptopNameValue,
     reset: resetLaptopInput,
-  } = useInput(laptopNameValidator, getDataFromLocalStorage("laptopName"));
+  } = useInput(laptopNameValidator, laptopDataFromlocal?.laptopName);
 
   const {
     value: brand,
@@ -104,7 +110,7 @@ const LaptopForm = () => {
     inputBlurHandler: brandBlurHandler,
     setValue: setBrandValue,
     reset: resetBrandSelector,
-  } = useInput((value) => value !== "", getDataFromLocalStorage("laptopBrand"));
+  } = useInput((value) => value !== "", laptopDataFromlocal?.brand);
 
   useEffect(() => {
     if (brands.length > 0 && brand.length > 0) {
@@ -126,7 +132,7 @@ const LaptopForm = () => {
     inputBlurHandler: cpuBlurHandler,
     setValue: setCpuValue,
     reset: resetCpuSelector,
-  } = useInput((value) => value !== "", getDataFromLocalStorage("cpu"));
+  } = useInput((value) => value !== "", laptopDataFromlocal?.cpu);
 
   const {
     value: cpuCore,
@@ -137,7 +143,7 @@ const LaptopForm = () => {
     inputBlurHandler: cpuCoreBlurHandler,
     setValue: setCpuCoresValue,
     reset: resetCpuCoreInput,
-  } = useInput(onlyNumberValidator, getDataFromLocalStorage("cpuCores"));
+  } = useInput(onlyNumberValidator, laptopDataFromlocal?.cpuCore);
 
   const {
     value: cpuThread,
@@ -148,7 +154,7 @@ const LaptopForm = () => {
     inputBlurHandler: cpuThreadBlurHandler,
     setValue: setCpuThreadsValue,
     reset: resetCpuThreadInput,
-  } = useInput(onlyNumberValidator, getDataFromLocalStorage("cpuThreads"));
+  } = useInput(onlyNumberValidator, laptopDataFromlocal?.cpuThread);
 
   const {
     value: ram,
@@ -159,7 +165,7 @@ const LaptopForm = () => {
     inputBlurHandler: ramBlurHandler,
     setValue: setRamValue,
     reset: resetRamInput,
-  } = useInput(onlyNumberValidator, getDataFromLocalStorage("ram"));
+  } = useInput(onlyNumberValidator, laptopDataFromlocal?.ram);
 
   const {
     value: memoryType,
@@ -170,10 +176,7 @@ const LaptopForm = () => {
     setValue: setMemoryTypeValue,
     // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetMemoryType,
-  } = useInput(
-    (value) => value.trim() !== "",
-    getDataFromLocalStorage("memoryType")
-  );
+  } = useInput((value) => value.trim() !== "", laptopDataFromlocal?.memoryType);
   console.log(memoryType);
 
   const {
@@ -187,7 +190,7 @@ const LaptopForm = () => {
     reset: resetPurchaseDate,
   } = useInput(
     (value) => value.trim() !== "",
-    getDataFromLocalStorage("purchaseDate")
+    laptopDataFromlocal?.purchaseDate
   );
 
   const {
@@ -199,7 +202,7 @@ const LaptopForm = () => {
     inputBlurHandler: priceBlurHandler,
     setValue: setPriceValue,
     reset: resetPriceInput,
-  } = useInput(onlyNumberValidator, getDataFromLocalStorage("price"));
+  } = useInput(onlyNumberValidator, laptopDataFromlocal?.price);
 
   const {
     value: laptopState,
@@ -210,10 +213,7 @@ const LaptopForm = () => {
     setValue: setLaptopStateValue,
     // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetlaptopState,
-  } = useInput(
-    (value) => value.trim() !== "",
-    getDataFromLocalStorage("state")
-  );
+  } = useInput((value) => value.trim() !== "", laptopDataFromlocal?.state);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -246,22 +246,22 @@ const LaptopForm = () => {
     const formValues = {
       token: "1c40792d27465fbe7c55aeb3cead277e",
       laptop_image: laptopImage,
-      name: localStorage.getItem("enteredName"),
-      surname: localStorage.getItem("enteredSurname"),
-      team_id: +localStorage.getItem("teamId"),
-      position_id: +localStorage.getItem("positionId"),
-      phone_number: localStorage.getItem("phoneNumber"),
-      email: localStorage.getItem("email"),
-      laptop_name: localStorage.getItem("laptopName"),
-      laptop_brand_id: +localStorage.getItem("brandId"),
-      laptop_cpu: localStorage.getItem("cpu"),
-      laptop_cpu_cores: +localStorage.getItem("cpuCores"),
-      laptop_cpu_threads: +localStorage.getItem("cpuThreads"),
-      laptop_ram: +localStorage.getItem("ram"),
-      laptop_hard_drive_type: localStorage.getItem("memoryType").toUpperCase(),
-      laptop_state: localStorage.getItem("state"),
-      laptop_purchase_date: localStorage.getItem("purchaseDate") || "",
-      laptop_price: +localStorage.getItem("price"),
+      name: userDataFromLocal.enteredName,
+      surname: userDataFromLocal.enteredSurname,
+      team_id: +userDataFromLocal.teamId,
+      position_id: +userDataFromLocal.positionId,
+      phone_number: userDataFromLocal.enteredPhoneNumber,
+      email: userDataFromLocal.enteredEmail,
+      laptop_name: laptopDataFromlocal.laptopName,
+      laptop_brand_id: +laptopDataFromlocal.brandId,
+      laptop_cpu: laptopDataFromlocal.cpu,
+      laptop_cpu_cores: +laptopDataFromlocal.cpuCore,
+      laptop_cpu_threads: +laptopDataFromlocal.cpuThread,
+      laptop_ram: +laptopDataFromlocal.ram,
+      laptop_hard_drive_type: laptopDataFromlocal.memoryType.toUpperCase(),
+      laptop_state: laptopDataFromlocal.state,
+      laptop_purchase_date: laptopDataFromlocal.purchaseDate || "",
+      laptop_price: +laptopDataFromlocal.price,
     };
     console.log(formValues);
 
@@ -390,17 +390,30 @@ const LaptopForm = () => {
   console.log(purchaseDate);
 
   useEffect(() => {
-    localStorage.setItem("laptopName", laptopName);
-    localStorage.setItem("laptopBrand", brand);
-    localStorage.setItem("cpu", cpu);
-    localStorage.setItem("cpuCores", cpuCore);
-    localStorage.setItem("cpuThreads", cpuThread);
-    localStorage.setItem("ram", ram);
-    localStorage.setItem("memoryType", memoryType);
-
-    localStorage.setItem("purchaseDate", purchaseDate.split("/").join("-"));
-    localStorage.setItem("price", price);
-    localStorage.setItem("state", laptopState);
+    const laptopData = {
+      laptopName: laptopName,
+      brand: brand,
+      brandId: brandId,
+      cpu: cpu,
+      cpuCore: cpuCore,
+      cpuThread: cpuThread,
+      ram: ram,
+      state: laptopState,
+      memoryType: memoryType,
+      purchaseDate: purchaseDate,
+      price: price,
+    };
+    localStorage.setItem("laptopData", JSON.stringify(laptopData));
+    // localStorage.setItem("laptopName", laptopName);
+    // localStorage.setItem("laptopBrand", brand);
+    // localStorage.setItem("cpu", cpu);
+    // localStorage.setItem("cpuCores", cpuCore);
+    // localStorage.setItem("cpuThreads", cpuThread);
+    // localStorage.setItem("ram", ram);
+    // localStorage.setItem("memoryType", memoryType);
+    // localStorage.setItem("purchaseDate", purchaseDate.split("/").join("-"));
+    // localStorage.setItem("price", price);
+    // localStorage.setItem("state", laptopState);
   }, [
     laptopName,
     brand,
@@ -412,6 +425,7 @@ const LaptopForm = () => {
     purchaseDate,
     price,
     laptopState,
+    brandId,
   ]);
 
   // useEffect(() => {

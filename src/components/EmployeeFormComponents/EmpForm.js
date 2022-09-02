@@ -11,16 +11,10 @@ import {
 } from "../../helpers/Validators";
 import { onlyGeorgia } from "../../helpers/Validators";
 import Dropdown from "../dropdown/Dropdown";
-import { getDataFromLocalStorage } from "../../helpers/LocStorageFunctions";
-
-const getData = (name) => {
-  const value = localStorage.getItem(name);
-  if (!value) {
-    return;
-  }
-
-  return value;
-};
+import {
+  getDataFromLocalStorage,
+  getDataFromLocalStorage2,
+} from "../../helpers/LocalStorageFunctions";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
@@ -30,10 +24,12 @@ const Form = () => {
   const [selectedPosition, setSelectedPosition] = useState("");
   const [teamId, setTeamId] = useState("");
   const [filteredPositions, setFilteredPositions] = useState([]);
+  // const [userData, setUserData] = useState();
 
   const navigate = useNavigate();
-  const gg = getData("enteredName");
-  console.log(gg);
+
+  const userDataFromLocal = getDataFromLocalStorage2("userData", "enteredName");
+  console.log(userDataFromLocal);
 
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
   const {
@@ -57,7 +53,7 @@ const Form = () => {
     inputBlurHandler: nameBlurHandler,
     setValue: setNameValue,
     reset: resetNameInput,
-  } = useInput(generalValidator, getDataFromLocalStorage("enteredName"));
+  } = useInput(generalValidator, userDataFromLocal?.enteredName);
 
   const {
     value: enteredSurname,
@@ -68,7 +64,7 @@ const Form = () => {
     inputBlurHandler: surnameBlurHandler,
     setValue: setSurnameValue,
     reset: resetSurnameInput,
-  } = useInput(generalValidator, getDataFromLocalStorage("enteredSurname"));
+  } = useInput(generalValidator, userDataFromLocal?.enteredSurname);
 
   const {
     value: team,
@@ -79,7 +75,7 @@ const Form = () => {
     inputBlurHandler: teamBlurHandler,
     setValue: setTeamValue,
     reset: resetTeamSelector,
-  } = useInput((value) => value !== "", getDataFromLocalStorage("team"));
+  } = useInput((value) => value !== "", userDataFromLocal?.team);
 
   const {
     value: position,
@@ -90,7 +86,7 @@ const Form = () => {
     inputBlurHandler: positionBlurHandler,
     setValue: setPositionValue,
     reset: resetPositionSelector,
-  } = useInput((value) => value !== "", getDataFromLocalStorage("position"));
+  } = useInput((value) => value !== "", userDataFromLocal?.position);
 
   // console.log(position);
 
@@ -103,7 +99,7 @@ const Form = () => {
     inputBlurHandler: emailBlurHandler,
     setValue: setEmailValue,
     reset: resetEmail,
-  } = useInput(emailValidator, getDataFromLocalStorage("email"));
+  } = useInput(emailValidator, userDataFromLocal?.enteredEmail);
 
   const {
     value: enteredPhoneNumber,
@@ -114,7 +110,7 @@ const Form = () => {
     inputBlurHandler: phoneNumberBlurHandler,
     setValue: setPhoneNumberValue,
     reset: resetPhoneNumber,
-  } = useInput(phoneNumberValidator, getDataFromLocalStorage("phoneNumber"));
+  } = useInput(phoneNumberValidator, userDataFromLocal?.enteredPhoneNumber);
 
   const [formValues, setFormValues] = useState({});
 
@@ -136,18 +132,24 @@ const Form = () => {
         (currPosition) => currPosition.name === position
       );
       localStorage.setItem("positionId", selectedObj.id);
-      // setSelectedTeamId(selectedObj.id);
+      setSelectedPositionId(selectedObj.id);
     }
     // resetPositionSelector();
   }, [position, positions]);
 
   useEffect(() => {
-    localStorage.setItem("enteredName", enteredName);
-    localStorage.setItem("enteredSurname", enteredSurname);
-    localStorage.setItem("team", team);
-    localStorage.setItem("position", position);
-    localStorage.setItem("email", enteredEmail);
-    localStorage.setItem("phoneNumber", enteredPhoneNumber);
+    const userData = {
+      enteredName: enteredName,
+      enteredSurname: enteredSurname,
+      team: team,
+      teamId: selectedTeamId,
+      position: position,
+      positionId: selectedPositionId,
+      enteredEmail: enteredEmail,
+      enteredPhoneNumber: enteredPhoneNumber,
+    };
+
+    localStorage.setItem("userData", JSON.stringify(userData));
   }, [
     enteredName,
     enteredSurname,
@@ -155,6 +157,8 @@ const Form = () => {
     position,
     enteredEmail,
     enteredPhoneNumber,
+    selectedTeamId,
+    selectedPositionId,
   ]);
 
   const nextPageHandler = (event) => {
