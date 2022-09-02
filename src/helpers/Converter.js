@@ -8,7 +8,7 @@ export const convertBase64 = (file) => {
     };
 
     fileReader.onerror = (error) => {
-      PromiseRejectionEvent(error);
+      reject(error);
     };
   });
 };

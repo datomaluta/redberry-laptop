@@ -11,6 +11,16 @@ import {
 } from "../../helpers/Validators";
 import { onlyGeorgia } from "../../helpers/Validators";
 import Dropdown from "../dropdown/Dropdown";
+import { getDataFromLocalStorage } from "../../helpers/LocStorageFunctions";
+
+const getData = (name) => {
+  const value = localStorage.getItem(name);
+  if (!value) {
+    return;
+  }
+
+  return value;
+};
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
@@ -22,6 +32,8 @@ const Form = () => {
   const [filteredPositions, setFilteredPositions] = useState([]);
 
   const navigate = useNavigate();
+  const gg = getData("enteredName");
+  console.log(gg);
 
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
   const {
@@ -45,7 +57,7 @@ const Form = () => {
     inputBlurHandler: nameBlurHandler,
     setValue: setNameValue,
     reset: resetNameInput,
-  } = useInput(generalValidator);
+  } = useInput(generalValidator, getDataFromLocalStorage("enteredName"));
 
   const {
     value: enteredSurname,
@@ -56,7 +68,7 @@ const Form = () => {
     inputBlurHandler: surnameBlurHandler,
     setValue: setSurnameValue,
     reset: resetSurnameInput,
-  } = useInput(generalValidator);
+  } = useInput(generalValidator, getDataFromLocalStorage("enteredSurname"));
 
   const {
     value: team,
@@ -67,7 +79,7 @@ const Form = () => {
     inputBlurHandler: teamBlurHandler,
     setValue: setTeamValue,
     reset: resetTeamSelector,
-  } = useInput((value) => value !== "");
+  } = useInput((value) => value !== "", getDataFromLocalStorage("team"));
 
   const {
     value: position,
@@ -78,7 +90,7 @@ const Form = () => {
     inputBlurHandler: positionBlurHandler,
     setValue: setPositionValue,
     reset: resetPositionSelector,
-  } = useInput((value) => value !== "");
+  } = useInput((value) => value !== "", getDataFromLocalStorage("position"));
 
   // console.log(position);
 
@@ -91,7 +103,7 @@ const Form = () => {
     inputBlurHandler: emailBlurHandler,
     setValue: setEmailValue,
     reset: resetEmail,
-  } = useInput(emailValidator);
+  } = useInput(emailValidator, getDataFromLocalStorage("email"));
 
   const {
     value: enteredPhoneNumber,
@@ -102,7 +114,9 @@ const Form = () => {
     inputBlurHandler: phoneNumberBlurHandler,
     setValue: setPhoneNumberValue,
     reset: resetPhoneNumber,
-  } = useInput(phoneNumberValidator);
+  } = useInput(phoneNumberValidator, getDataFromLocalStorage("phoneNumber"));
+
+  const [formValues, setFormValues] = useState({});
 
   // useEffect for team and position selectors connection
   // find in teams team, which name is equal selected team name
@@ -128,46 +142,12 @@ const Form = () => {
   }, [position, positions]);
 
   useEffect(() => {
-    console.log("FIRST EFFECT");
-    const name = localStorage.getItem("enteredName");
-    console.log(name);
-    const surname = localStorage.getItem("enteredSurname");
-    const team = localStorage.getItem("team");
-    const position = localStorage.getItem("position");
-    const email = localStorage.getItem("email");
-    const phoneNumber = localStorage.getItem("phoneNumber");
-
-    setNameValue(name || "");
-    setSurnameValue(surname || "");
-    setTeamValue(team || "");
-    setPositionValue(position || "");
-    setEmailValue(email || "");
-    setPhoneNumberValue(phoneNumber || "");
-  }, []);
-  console.log(enteredName);
-
-  useEffect(() => {
-    console.log("SECOND EFFECT");
-    if (enteredName.trim() !== "") {
-      console.log("if block-shi shemovida");
-      console.log(enteredName || "ar aris");
-      localStorage.setItem("enteredName", enteredName);
-    }
-    if (enteredSurname.trim() !== "") {
-      localStorage.setItem("enteredSurname", enteredSurname);
-    }
-    if (team.trim() !== "") {
-      localStorage.setItem("team", team);
-    }
-    if (position.trim() !== "") {
-      localStorage.setItem("position", position);
-    }
-    if (enteredEmail.trim() !== "") {
-      localStorage.setItem("email", enteredEmail);
-    }
-    if (enteredPhoneNumber.trim() !== "") {
-      localStorage.setItem("phoneNumber", enteredPhoneNumber);
-    }
+    localStorage.setItem("enteredName", enteredName);
+    localStorage.setItem("enteredSurname", enteredSurname);
+    localStorage.setItem("team", team);
+    localStorage.setItem("position", position);
+    localStorage.setItem("email", enteredEmail);
+    localStorage.setItem("phoneNumber", enteredPhoneNumber);
   }, [
     enteredName,
     enteredSurname,
@@ -176,10 +156,6 @@ const Form = () => {
     enteredEmail,
     enteredPhoneNumber,
   ]);
-
-  // useEffect(() => {
-
-  // }, [team]);
 
   const nextPageHandler = (event) => {
     event.preventDefault();
@@ -198,9 +174,7 @@ const Form = () => {
       !teamIsValid ||
       !positionIsValid ||
       !enteredEmailIsValid ||
-      !enteredPhoneNumberIsValid ||
-      !selectedTeam ||
-      !selectedPosition
+      !enteredPhoneNumberIsValid
     ) {
       return;
     }
@@ -271,7 +245,7 @@ const Form = () => {
 
   return (
     <GeneralForm>
-      <Dropdown
+      {/* <Dropdown
         setSelect={selectTeamHandler}
         currentValue={selectedTeam}
         values={teams}
@@ -287,7 +261,7 @@ const Form = () => {
         defaultValue="პოზიცია"
         disabled={!selectedTeam}
         hasError={selectedPosition.length === 0}
-      />
+      /> */}
       {/* <Dropdown /> */}
       {(teamError || positionError) && <h2>{teamError || positionError}</h2>}
       <div className={classes.names}>
@@ -298,6 +272,7 @@ const Form = () => {
             onBlur={nameBlurHandler}
             value={enteredName}
             placeholder="გრიშა"
+            name="firstname"
           />
           {nameInputHasError ? (
             <p>გამოიყენე მხოლოდ ქართული ასოები</p>
@@ -314,6 +289,7 @@ const Form = () => {
             onChange={surnameChangeHandler}
             onBlur={surnameBlurHandler}
             placeholder="ბაგრატიონი"
+            name="surname"
           />
           {surnameInputHasError ? (
             <p>გამოიყენე მხოლოდ ქართული ასოები</p>
