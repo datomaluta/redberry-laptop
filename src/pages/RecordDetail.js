@@ -5,6 +5,7 @@ import BackButton from "../UI/BackButton";
 import TestRecord from "../components/recordDetailComponents/TestRecord";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import useFetchData from "../hooks/use-fetchData";
+import ErrorText from "../UI/ErrrorText";
 
 const RecordDetail = () => {
   const navigate = useNavigate();
@@ -23,14 +24,14 @@ const RecordDetail = () => {
 
   useEffect(() => {
     fetchLaptopDetail(
-      `https://pcfy.redberryinternship.ge/api/laptop/${id}?token=1c40792d27465fbe7c55aeb3cead277e`
+      `https://pcfy.redberryinternship.ge/api/laptop/${id}?token=1430dbe763b0852044c745ac14a4d9ec`
     );
   }, [fetchLaptopDetail, id]);
 
   return (
     <Fragment>
       {isLoading && <LoadingSpinner />}
-      {error && <h1>{error}</h1>}
+      {error && <ErrorText errorText={error} />}
       <BackButton onClick={goBackHandler} />
       {detailInfo && !error && <Record detailInfo={detailInfo} />}
     </Fragment>

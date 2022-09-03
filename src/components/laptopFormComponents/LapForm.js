@@ -1,5 +1,5 @@
-import { memo, useEffect, useRef, useState } from "react";
-import { Link, resolvePath } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import GeneralForm from "../../layouts/formTemplateLayout/GeneralForm";
 import classes from "./LapForm.module.css";
@@ -19,19 +19,18 @@ import {
 } from "../../helpers/LocalStorageFunctions";
 import { useNavigate } from "react-router-dom";
 import cameraPhoto from "../../assets/formimages/photoCamera.png";
-import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
+// import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
 import LoadingSpinner from "../../UI/LoadingSpinner";
+import UploadedIcon from "../../assets/formIcons/UploadedIcon";
 
 const LaptopForm = () => {
   const [requestError, setRequestError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
   const [brandId, setBrandId] = useState("");
-  const [hddIsChecked, setHddIsChecked] = useState(false);
-  const [ssdIsChecked, setSsdIsChecked] = useState(false);
-
   const [baseImage, setBaseImage] = useState("");
+
   const navigate = useNavigate();
+
   const laptopDataFromlocal = getDataFromLocalStorage2("laptopData");
   const userDataFromLocal = getDataFromLocalStorage2("userData");
   console.log(laptopDataFromlocal);
@@ -41,8 +40,10 @@ const LaptopForm = () => {
     fetchField: fetchBrands,
     data: brands,
   } = useHttp();
+  console.log(brandError);
 
   const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
+  console.log(cpuError);
 
   useEffect(() => {
     fetchBrands("brands");
@@ -55,7 +56,7 @@ const LaptopForm = () => {
     isTouchedHandler: setLaptopImageIsTouched,
     hasError: laptopImageHasError,
     valueChangeHandler: imgChangeHandler,
-    inputBlurHandler: imgBlurHandler,
+    // inputBlurHandler: imgBlurHandler,
     reset: resetImageInput,
   } = useInput(imageValidator, "", true);
 
@@ -210,6 +211,7 @@ const LaptopForm = () => {
       !cpuIsValid ||
       !cpuCoreIsValid ||
       !cpuThreadIsValid ||
+      !priceIsValid ||
       !ramIsValid ||
       !memoryTypeIsValid ||
       !purchaseDateIsValid
@@ -219,7 +221,7 @@ const LaptopForm = () => {
 
     // here is request send functionality
     const formValues = {
-      token: "1c40792d27465fbe7c55aeb3cead277e",
+      token: "1430dbe763b0852044c745ac14a4d9ec",
       laptop_image: laptopImage,
       name: userDataFromLocal.enteredName,
       surname: userDataFromLocal.enteredSurname,
@@ -235,11 +237,11 @@ const LaptopForm = () => {
       laptop_ram: +laptopDataFromlocal.ram,
       laptop_hard_drive_type: laptopDataFromlocal.memoryType.toUpperCase(),
       laptop_state: laptopDataFromlocal.state,
-      laptop_purchase_date: laptopDataFromlocal.purchaseDate,
+      laptop_purchase_date: "",
 
       laptop_price: +laptopDataFromlocal.price,
     };
-    console.log(formValues);
+    console.log(laptopDataFromlocal.purchaseDate);
 
     const data = new FormData();
 
@@ -296,7 +298,7 @@ const LaptopForm = () => {
       ram: ram,
       state: laptopState,
       memoryType: memoryType,
-      purchaseDate: purchaseDate.split("/").join("-"),
+      purchaseDate: purchaseDate,
       price: price,
     };
     localStorage.setItem("laptopData", JSON.stringify(laptopData));
@@ -313,6 +315,7 @@ const LaptopForm = () => {
     laptopState,
     brandId,
   ]);
+  console.log(laptopImage);
 
   const laptopImageClasses = laptopImageHasError
     ? `${classes.imageUploader} ${classes.imageError}`
@@ -361,25 +364,57 @@ const LaptopForm = () => {
     <GeneralForm onSubmit={submitHandler}>
       {isLoading && <LoadingSpinner />}
       {requestError && <h1>{requestError}</h1>}
-      <div className={laptopImageClasses}>
+      <div
+        className={
+          !laptopImage
+            ? laptopImageClasses
+            : `${laptopImageClasses} ${classes.existImage}`
+        }
+      >
         <div className={classes.labelAndErrorWrapper}>
           {laptopImageHasError && <WarningIcon />}
-          <label className={classes.imgLabel} htmlFor="img">
-            ჩააგდე ან ატვრთე <br /> ლეპტოპის ფოტო
-          </label>
-          <img className={classes.cameraIcon} src={cameraPhoto} alt="camera" />
+          {!laptopImage && (
+            <label className={classes.imgLabel} htmlFor="img">
+              ჩააგდე ან ატვირთე <br /> ლეპტოპის ფოტო
+            </label>
+          )}
+          {!laptopImage && (
+            <img
+              className={classes.cameraIcon}
+              src={cameraPhoto}
+              alt="camera"
+            />
+          )}
         </div>
         <div className={classes.inputImageWrapper}>
           <input
             onChange={imgChangeHandler}
             id="img"
-            className={classes["custom-file-input"]}
+            className={
+              laptopImage
+                ? `${classes["custom-file-input"]} ${classes.haveImage}`
+                : classes["custom-file-input"]
+            }
             type="file"
           />
-          {baseImage && (
-            <img className={classes.uploadedImage} src={baseImage} />
-          )}
         </div>
+        {/* after image upload content */}
+        {laptopImage && (
+          <div className={classes.imageStatusName}>
+            <UploadedIcon />
+            <div className={classes.imageInfo}>
+              <p className={classes.imageName}>{laptopImage.name}</p>
+              <p className={classes.imageSize}>
+                {(laptopImage.size / 1024 / 1024).toFixed(1)} mb
+              </p>
+            </div>
+          </div>
+        )}
+        {baseImage && (
+          <div className={classes.imgWrapper}>
+            <img className={classes.uploadedImage} src={baseImage} />
+          </div>
+        )}
       </div>
       <div className={classes.names}>
         <div className={laptopNameClasses}>

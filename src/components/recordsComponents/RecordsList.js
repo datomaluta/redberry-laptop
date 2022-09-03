@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import useFetchData from "../../hooks/use-fetchData";
+import ErrorText from "../../UI/ErrrorText";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import RecordItem from "./RecordItem";
 import classes from "./RecordsList.module.css";
@@ -8,14 +9,18 @@ const Records = () => {
   const { error, isLoading, fetchData: fetchLaptops, data } = useFetchData();
   useEffect(() => {
     fetchLaptops(
-      "https://pcfy.redberryinternship.ge/api/laptops?token=1c40792d27465fbe7c55aeb3cead277e"
+      "https://pcfy.redberryinternship.ge/api/laptops?token=1430dbe763b0852044c745ac14a4d9ec"
     );
   }, [fetchLaptops]);
   return (
     <Fragment>
       {isLoading && <LoadingSpinner />}
-      {error && <h1 className={classes.error}>{error}</h1>}
+      {error && <ErrorText errorText={error} />}
+
       <h1 className={classes.heading}>ჩანაწერების სია</h1>
+      {!error && !isLoading && data?.length === 0 && (
+        <h1 className={classes.noData}>ჩანაწერები არ მოიძებნა</h1>
+      )}
       {!error && !isLoading && (
         <section className={classes.list}>
           {data &&

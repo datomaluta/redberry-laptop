@@ -25,6 +25,11 @@
   font-size: 36px;
 }
 
+.noData {
+  margin-top: 200px;
+  text-align: center;
+}
+
 @media (max-width: 390px) {
   .list {
     width: 358px;

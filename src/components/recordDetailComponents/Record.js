@@ -1,26 +1,29 @@
-import { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+
 import classes from "./Record.module.css";
 import useHttp from "../../hooks/use-http";
 
 const Record = (props) => {
   // const [position, setPosition] = useState();
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
+  console.log(teamError);
 
   const {
     error: positionError,
     fetchField: fetchPositions,
     data: positions,
   } = useHttp();
+  console.log(positionError);
 
   const {
     error: brandError,
     fetchField: fetchBrands,
     data: brands,
   } = useHttp();
+  console.log(brandError);
 
   const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
-
+  console.log(cpuError);
   useEffect(() => {
     fetchTeams("teams");
     fetchPositions("positions");
@@ -51,7 +54,7 @@ const Record = (props) => {
     : "";
   console.log(team);
   const position = positions
-    ? positions.find((position) => position.id == user["position_id"])?.name
+    ? positions.find((position) => position.id === user["position_id"])?.name
     : "";
   const brand = brands
     ? brands.find((brand) => brand.id === laptop["brand_id"])?.name
