@@ -23,6 +23,7 @@ const Record = (props) => {
   console.log(brandError);
 
   const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
+  console.log(cpus);
   console.log(cpuError);
   useEffect(() => {
     fetchTeams("teams");

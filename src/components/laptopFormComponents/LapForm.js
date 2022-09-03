@@ -180,7 +180,7 @@ const LaptopForm = () => {
 
   const {
     value: laptopState,
-    isValid: laptopStateIsValid,
+    // isValid: laptopStateIsValid,
     isTouchedHandler: setLaptopStateIsTouched,
     hasError: laptopStateHasError,
     valueChangeHandler: laptopStateChangeHandler,
@@ -275,7 +275,7 @@ const LaptopForm = () => {
       resetPriceInput();
       resetlaptopState();
 
-      // clearLocalStorage();
+      clearLocalStorage();
     } catch (err) {
       console.log("hello from errror");
       console.log(err.message);
@@ -412,7 +412,11 @@ const LaptopForm = () => {
         )}
         {baseImage && (
           <div className={classes.imgWrapper}>
-            <img className={classes.uploadedImage} src={baseImage} />
+            <img
+              className={classes.uploadedImage}
+              src={baseImage}
+              alt="baseimg"
+            />
           </div>
         )}
       </div>

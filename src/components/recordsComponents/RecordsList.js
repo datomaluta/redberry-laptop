@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import useFetchData from "../../hooks/use-fetchData";
 import ErrorText from "../../UI/ErrrorText";
 import LoadingSpinner from "../../UI/LoadingSpinner";

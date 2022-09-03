@@ -67,7 +67,7 @@
   padding-bottom: 1.8rem;
   outline: none;
   /* white-space: nowrap; */
-  -webkit-user-select: none;
+
   cursor: pointer;
   /* text-shadow: 1px 1px #fff; */
   font-weight: 500;
@@ -132,15 +132,15 @@
   height: 100%; */
 }
 
-.custom-file-input:focus::before {
-  /* background: red; */
+/* .custom-file-input:focus::before {
+  
 }
 .custom-file-input:hover::before {
-  /* border-color: black; */
+  
 }
 .custom-file-input:active::before {
-  /* background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); */
-}
+
+} */
 
 .bottomLabel {
   font-weight: 300;
@@ -205,10 +205,6 @@
   margin-right: 1.8rem;
 }
 
-.radioWrapper {
-  /* background-color: blue; */
-}
-
 .dateAndPrice {
   display: flex;
   gap: 6rem;
@@ -216,10 +212,6 @@
 
 .dateAndPrice div {
   width: 100%;
-}
-
-.laptopCondition {
-  /* background-color: red; */
 }
 
 /* .radios {

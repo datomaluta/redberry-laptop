@@ -9,21 +9,21 @@ import {
   generalValidator,
   phoneNumberValidator,
 } from "../../helpers/Validators";
-import { onlyGeorgia } from "../../helpers/Validators";
-import Dropdown from "../dropdown/Dropdown";
+// import { onlyGeorgia } from "../../helpers/Validators";
+// import Dropdown from "../dropdown/Dropdown";
 import {
-  getDataFromLocalStorage,
+  // getDataFromLocalStorage,
   getDataFromLocalStorage2,
 } from "../../helpers/LocalStorageFunctions";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
   const [selectedPositionId, setSelectedPositionId] = useState("");
-  const [selectedTeam, setSelectedTeam] = useState("");
-  const [selectedTeamIsTouched, setSelectedTeamIsTouched] = useState(false);
-  const [selectedPosition, setSelectedPosition] = useState("");
-  const [teamId, setTeamId] = useState("");
-  const [filteredPositions, setFilteredPositions] = useState([]);
+  // const [selectedTeam, setSelectedTeam] = useState("");
+  // const [selectedTeamIsTouched, setSelectedTeamIsTouched] = useState(false);
+  // const [selectedPosition, setSelectedPosition] = useState("");
+  // const [teamId, setTeamId] = useState("");
+  // const [filteredPositions, setFilteredPositions] = useState([]);
   // const [userData, setUserData] = useState();
 
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const Form = () => {
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
-    setValue: setNameValue,
+
     reset: resetNameInput,
   } = useInput(generalValidator, userDataFromLocal?.enteredName);
 
@@ -62,7 +62,7 @@ const Form = () => {
     hasError: surnameInputHasError,
     valueChangeHandler: surnameChangeHandler,
     inputBlurHandler: surnameBlurHandler,
-    setValue: setSurnameValue,
+
     reset: resetSurnameInput,
   } = useInput(generalValidator, userDataFromLocal?.enteredSurname);
 
@@ -73,7 +73,7 @@ const Form = () => {
     hasError: teamHasError,
     valueChangeHandler: teamChangeHandler,
     inputBlurHandler: teamBlurHandler,
-    setValue: setTeamValue,
+
     reset: resetTeamSelector,
   } = useInput((value) => value !== "", userDataFromLocal?.team);
 
@@ -84,7 +84,7 @@ const Form = () => {
     hasError: positionHasError,
     valueChangeHandler: positionChangeHandler,
     inputBlurHandler: positionBlurHandler,
-    setValue: setPositionValue,
+
     reset: resetPositionSelector,
   } = useInput((value) => value !== "", userDataFromLocal?.position);
 
@@ -97,7 +97,7 @@ const Form = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    setValue: setEmailValue,
+
     reset: resetEmail,
   } = useInput(emailValidator, userDataFromLocal?.enteredEmail);
 
@@ -108,11 +108,11 @@ const Form = () => {
     hasError: phoneNumberInputHasError,
     valueChangeHandler: phoneNumberChangeHandler,
     inputBlurHandler: phoneNumberBlurHandler,
-    setValue: setPhoneNumberValue,
+
     reset: resetPhoneNumber,
   } = useInput(phoneNumberValidator, userDataFromLocal?.enteredPhoneNumber);
 
-  const [formValues, setFormValues] = useState({});
+  // const [formValues, setFormValues] = useState({});
 
   // useEffect for team and position selectors connection
   // find in teams team, which name is equal selected team name
@@ -220,32 +220,32 @@ const Form = () => {
 
   // console.log(enteredName);
 
-  const selectTeamHandler = (team) => {
-    setSelectedTeam(team);
-  };
+  // const selectTeamHandler = (team) => {
+  //   setSelectedTeam(team);
+  // };
 
-  const selectPositionHandler = (position) => {
-    setSelectedPosition(position);
-  };
+  // const selectPositionHandler = (position) => {
+  //   setSelectedPosition(position);
+  // };
 
-  useEffect(() => {
-    if (teams.length > 0 && positions.length > 0) {
-      console.log(teams);
-      console.log(selectedTeam);
-      const teamOne = teams.find((curTeam) => curTeam.name === selectedTeam);
-      setTeamId(teamOne.id);
-      console.log(teamOne);
-      const filtered = positions.filter(
-        (position) => position["team_id"] === teamOne.id
-      );
-      setFilteredPositions(filtered);
-    }
-  }, [selectedTeam]);
-  console.log(selectedTeam);
+  // useEffect(() => {
+  //   if (teams.length > 0 && positions.length > 0) {
+  //     console.log(teams);
+  //     console.log(selectedTeam);
+  //     const teamOne = teams.find((curTeam) => curTeam.name === selectedTeam);
+  //     setTeamId(teamOne.id);
+  //     console.log(teamOne);
+  //     const filtered = positions.filter(
+  //       (position) => position["team_id"] === teamOne.id
+  //     );
+  //     setFilteredPositions(filtered);
+  //   }
+  // }, [selectedTeam]);
+  // console.log(selectedTeam);
 
-  const touchHandler = () => {
-    setSelectedTeamIsTouched(true);
-  };
+  // const touchHandler = () => {
+  //   setSelectedTeamIsTouched(true);
+  // };
 
   return (
     <GeneralForm>

@@ -1,8 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Record from "../components/recordDetailComponents/Record";
 import BackButton from "../UI/BackButton";
-import TestRecord from "../components/recordDetailComponents/TestRecord";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import useFetchData from "../hooks/use-fetchData";
 import ErrorText from "../UI/ErrrorText";
