@@ -17,4 +17,7 @@
   .responsiveImage {
     display: block;
   }
+  .imagesBox {
+    margin-top: 6.7rem;
+  }
 }

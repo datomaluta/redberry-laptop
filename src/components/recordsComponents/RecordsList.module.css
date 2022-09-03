@@ -17,6 +17,14 @@
   text-align: center;
 }
 
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+}
+
 @media (max-width: 390px) {
   .list {
     width: 358px;

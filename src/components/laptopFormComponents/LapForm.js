@@ -211,7 +211,8 @@ const LaptopForm = () => {
       !cpuCoreIsValid ||
       !cpuThreadIsValid ||
       !ramIsValid ||
-      !memoryTypeIsValid
+      !memoryTypeIsValid ||
+      !purchaseDateIsValid
     ) {
       return;
     }
@@ -234,7 +235,8 @@ const LaptopForm = () => {
       laptop_ram: +laptopDataFromlocal.ram,
       laptop_hard_drive_type: laptopDataFromlocal.memoryType.toUpperCase(),
       laptop_state: laptopDataFromlocal.state,
-      laptop_purchase_date: laptopDataFromlocal.purchaseDate || "",
+      laptop_purchase_date: laptopDataFromlocal.purchaseDate,
+
       laptop_price: +laptopDataFromlocal.price,
     };
     console.log(formValues);
@@ -270,14 +272,17 @@ const LaptopForm = () => {
       resetPurchaseDate();
       resetPriceInput();
       resetlaptopState();
+
+      // clearLocalStorage();
     } catch (err) {
       console.log("hello from errror");
+      console.log(err.message);
+      console.log(err);
       setRequestError("Request error, Something went wrong!");
       setIsLoading(false);
     }
-
-    // clearLocalStorage();
   };
+  console.log(purchaseDate);
 
   // when one of this field change, local storage also be updated
   useEffect(() => {
@@ -291,7 +296,7 @@ const LaptopForm = () => {
       ram: ram,
       state: laptopState,
       memoryType: memoryType,
-      purchaseDate: purchaseDate,
+      purchaseDate: purchaseDate.split("/").join("-"),
       price: price,
     };
     localStorage.setItem("laptopData", JSON.stringify(laptopData));

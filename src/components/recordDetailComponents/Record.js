@@ -3,26 +3,6 @@ import { useParams } from "react-router-dom";
 import classes from "./Record.module.css";
 import useHttp from "../../hooks/use-http";
 
-const DummyData = {
-  src: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-  personName: "აკაკი",
-  team: "დიზაინერები",
-  surname: "წერეთელი",
-  positon: "ილუსტრატორი",
-  mail: "ako@redberry.ge",
-  phoneNumber: "+995591921669",
-  laptopName: "Razor bla bla",
-  laptopBrand: "HP",
-  ram: 16,
-  memoryType: "SSD",
-  cpu: "Intel 5",
-  cpuCores: 13,
-  cpuThreads: 67,
-  laptopState: "მეორადი",
-  date: "12/06/2021",
-  price: 1500,
-};
-
 const Record = (props) => {
   // const [position, setPosition] = useState();
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();

@@ -10,13 +10,19 @@ export const generalValidator = (value) => {
 };
 
 export const onlyGeorgian = (value) => {
-  for (let i = 0; i < value.length; i++) {
-    if (value.charCodeAt(i) < 4304 || value.charCodeAt(i) > 4336) {
-      return false;
-    } else {
-      return true;
-    }
+  const format = /^[ა-ჰ]+$/;
+  if (value.match(format)) {
+    return true;
+  } else {
+    return false;
   }
+  // for (let i = 0; i < value.length; i++) {
+  //   if (value.charCodeAt(i) < 4304 || value.charCodeAt(i) > 4336) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 };
 
 export const emailValidator = (value) => {
