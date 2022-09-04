@@ -39,12 +39,11 @@
 }
 
 .invalid label {
-  /* background-color: red; */
   color: red;
 }
 
 .invalid input {
-  border: 1.8px solid #e52f2f;
+  border: 0.18rem solid #e52f2f;
 }
 
 .invalid p {
@@ -55,7 +54,7 @@
 }
 
 .error select {
-  border: 2px solid #e52f2f;
+  border: 0.18rem solid #e52f2f;
 }
 
 @media (max-width: 390px) {
@@ -63,10 +62,10 @@
     display: block;
   }
   .firstName {
-    margin-bottom: 23px;
+    margin-bottom: 2.3rem;
   }
   .teamSelector {
-    margin-bottom: 23px;
+    margin-bottom: 2.3rem;
   }
 
   .btnWrapper button {

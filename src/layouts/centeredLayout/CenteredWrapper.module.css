@@ -1,9 +1,7 @@
 .centered {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* background-color: blue; */
   height: 108rem;
   width: 100%;
 }
@@ -12,10 +10,8 @@
   .centered {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    /* background-color: blue; */
-    height: 844px;
+    height: 84.4rem;
     width: 100%;
   }
 }

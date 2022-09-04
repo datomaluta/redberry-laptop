@@ -1,9 +1,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 7rem;
   width: 122.6rem;
-  /* height: 973px; */
   background-color: #fff;
   border-radius: 1rem;
   font-size: 1.8rem;
@@ -11,10 +10,6 @@
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 2.1rem;
-  /* padding-top: 9.6rem;
-  padding-bottom: 5rem;
-  padding-left: 17.4rem;
-  padding-right: 17.4rem; */
   padding: 9.6rem 17.4rem 5rem;
   margin-bottom: 6.7rem;
 }
@@ -88,10 +83,9 @@
 @media (max-width: 390px) {
   .form {
     width: 100%;
-    padding: 38px 16px 55px;
-    /* background-color: red; */
+    padding: 3.8rem 1.6rem 5.5rem;
     border-radius: 12px 12px 0px 0px;
     margin-bottom: 0;
-    gap: 23px;
+    gap: 2.3rem;
   }
 }

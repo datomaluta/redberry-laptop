@@ -7,19 +7,9 @@
 }
 
 @font-face {
-  font-family: "Helvetica Neue"; /*Can be any text*/
+  font-family: "Helvetica Neue";
   src: local("HelveticaNeue"),
     url("./assets/fonts/HelveticaNeue.ttc") format("truetype");
-}
-
-.uppercase {
-  font-family: "Helvetica Neue";
-  font-variant-caps: all-small-caps;
-  font-size: 20px;
-}
-
-.lowercase {
-  font-family: "Helvetica Neue";
 }
 
 html {
@@ -30,6 +20,7 @@ body {
   font-family: "Helvetica Neue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {

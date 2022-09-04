@@ -9,15 +9,10 @@
 }
 
 .imgWrapper {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-}
-
-.imgWrapper img {
-  /* background-color: black; */
 }
 
 .popup h2 {
@@ -26,7 +21,6 @@
   font-size: 2.5rem;
   color: #292929;
   margin-bottom: 7rem;
-  /* background-color: yellow; */
 }
 
 .actions {
@@ -37,7 +31,6 @@
 }
 
 .action {
-  /* font-family: "Helvetica Neue"; */
   text-decoration: none;
   color: #fff;
   font-size: 2rem;
@@ -45,7 +38,6 @@
   font-weight: 500;
   background-color: #62a1eb;
   display: block;
-  width: fit-content;
   width: 29.7rem;
   height: 6rem;
   margin-top: 2.6rem;

@@ -1,24 +1,21 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 1178px;
+  width: 117.8rem;
   margin: 0 auto;
-  /* background-color: red; */
 }
 
 .personalInfo {
   display: flex;
   align-items: center;
-  gap: 60px;
-  padding-bottom: 84px;
+  gap: 6rem;
+  padding-bottom: 8.4rem;
   border-bottom: 1px solid #a5a5a5;
-  /* background-color: red; */
 }
 
 .imgWrapper {
-  /* background-color: blue; */
-  width: 577px;
-  height: 342px;
+  width: 57.7rem;
+  height: 34.2rem;
   overflow: hidden;
   width: 100%;
 }
@@ -30,75 +27,70 @@
 
 .infoBox {
   display: flex;
-  /* background-color: red; */
   width: 100%;
-  padding-left: 28px;
+  padding-left: 2.8rem;
 }
 
 .titles p {
   font-weight: 700;
-  font-size: 22px;
+  font-size: 2.2rem;
   color: #2e2e2e;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .values p {
-  font-size: 22px;
+  font-size: 2.2rem;
   font-weight: 400;
   color: #797979;
   height: fit-content;
-  margin-bottom: 20px;
-  margin-left: 80px;
+  margin-bottom: 2rem;
+  margin-left: 8rem;
 }
 
 .laptopInfo {
-  margin-top: 54px;
+  margin-top: 5.4rem;
   display: flex;
-  gap: 60px;
-  padding-bottom: 77px;
+  gap: 6rem;
+  padding-bottom: 7.7rem;
   border-bottom: 1px solid #a5a5a5;
 }
 
 .leftSide {
   display: flex;
-  width: 577px;
-  /* background-color: red; */
+  width: 57.7rem;
 }
 
 .rightSide {
   display: flex;
-  /* background-color: blue; */
 }
 
 .restOfLaptop {
   display: flex;
-  gap: 60px;
-  margin-top: 54px;
+  gap: 6rem;
+  margin-top: 5.4rem;
 }
 
 .certainRest p {
-  margin-left: 19px;
+  margin-left: 1.9rem;
 }
 
 .certainLap p {
-  margin-left: 93px;
+  margin-left: 9.3rem;
 }
 
 .certainDate p {
-  margin-left: 54px;
+  margin-left: 5.4rem;
 }
 
 .heading {
   font-family: "Helvetica Neue";
-
   font-weight: 700;
-  font-size: 34px;
-  line-height: 21px;
+  font-size: 3.4rem;
+  line-height: 2.1rem;
   text-align: center;
   color: #000000;
-
-  margin-top: 76px;
-  margin-bottom: 84px;
+  margin-top: 7.6rem;
+  margin-bottom: 8.4rem;
 }
 
 .responsiveState {
@@ -107,14 +99,13 @@
 
 @media (max-width: 390px) {
   .wrapper {
-    width: 358px;
+    width: 35.8rem;
   }
   .personalInfo {
     flex-direction: column;
-    padding-bottom: 40px;
-    width: 358px;
-    gap: 30px;
-    /* background-color: rgb(187, 187, 217); */
+    padding-bottom: 4rem;
+    width: 35.8rem;
+    gap: 3rem;
   }
 
   .infoBox {
@@ -123,55 +114,54 @@
 
   .imgWrapper {
     width: 100%;
-    height: 191px;
+    height: 19.1rem;
   }
   .titles p {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #2e2e2e;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   .values p {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
     color: #797979;
     height: fit-content;
-    margin-bottom: 20px;
-    margin-left: 80px;
+    margin-bottom: 2rem;
+    margin-left: 8rem;
   }
   .laptopInfo {
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 3rem;
     gap: 0px;
-    padding-bottom: 41px;
+    padding-bottom: 4.1rem;
   }
   .leftSide {
     display: flex;
     width: 100%;
-    /* background-color: red; */
   }
 
   .restOfLaptop {
     flex-direction: column;
     gap: 0px;
-    margin-top: 30px;
-    margin-bottom: 44px;
+    margin-top: 3rem;
+    margin-bottom: 4.4rem;
   }
 
   .certainLap p {
-    margin-left: 43px;
+    margin-left: 4.3rem;
   }
 
   .certainRest p {
-    margin-left: 62px;
+    margin-left: 6.2rem;
   }
 
   .certainCpu p {
-    margin-left: 70px;
+    margin-left: 7rem;
   }
 
   .certainDate p {
-    margin-left: 55px;
+    margin-left: 5.5rem;
   }
 
   .bigState {
@@ -183,8 +173,8 @@
   }
 
   .heading {
-    font-size: 16px;
-    margin-top: 31px;
-    margin-bottom: 33px;
+    font-size: 1.6rem;
+    margin-top: 3.1rem;
+    margin-bottom: 3.3rem;
   }
 }

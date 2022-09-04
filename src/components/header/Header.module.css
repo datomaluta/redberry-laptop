@@ -1,5 +1,4 @@
 .header {
-  /* background-color: red; */
   display: flex;
   justify-content: center;
   margin-bottom: 4rem;
@@ -41,21 +40,20 @@
 }
 
 .headerInfo p {
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #232323;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .headerInfo span {
-  font-size: 14px;
+  font-size: 1.4rem;
   color: #898989;
 }
 
 @media (max-width: 390px) {
   .header {
     margin-bottom: 1rem;
-    /* background-color: rebeccapurple; */
   }
   .header nav {
     display: none;

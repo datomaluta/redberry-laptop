@@ -28,10 +28,7 @@
 }
 
 .imageUploader input {
-  /* background-color: red; */
-  /* border: none; */
   color: #fff;
-
   border: none;
   display: flex;
   width: 23.3rem;
@@ -61,39 +58,36 @@
   display: inline-block;
   background: #62a1eb;
   color: #fff;
-  /* border: 0.1rem solid #999; */
   border-radius: 10px;
   padding-top: 1.8rem;
   padding-bottom: 1.8rem;
   outline: none;
-  /* white-space: nowrap; */
-
   cursor: pointer;
-  /* text-shadow: 1px 1px #fff; */
   font-weight: 500;
   font-size: 2rem;
+  transition: 0.2s;
 }
 
 .haveImage::before {
   content: "თავიდან ატვირთე";
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
   position: absolute;
-  bottom: -80px;
+  bottom: -8rem;
   right: 0;
   z-index: 101;
 }
 
 .imgWrapper {
-  width: 878px;
-  height: 423px;
+  width: 87.8rem;
+  height: 42.3ewm;
 }
 
 .uploadedImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 1rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -101,46 +95,39 @@
 
 .imageStatusName {
   display: flex;
-  gap: 20px;
+  gap: 2rem;
   position: absolute;
-  bottom: -60px;
+  bottom: -6rem;
   left: 0;
   z-index: 101;
   align-items: center;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 
 .imageInfo {
   display: flex;
-  gap: 20px;
+  gap: 2rem;
 }
-
-/* .imageName {
-  font-size: 18px;
-} */
 
 .imageSize {
   color: #5f5f5f;
 }
 
 .inputImageWrapper {
-  /* background-color: blue; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 100%;
-  height: 100%; */
 }
 
-/* .custom-file-input:focus::before {
-  
+.custom-file-input:focus::before {
+  background: #1a5dab;
 }
 .custom-file-input:hover::before {
-  
+  background: #317ad0;
 }
 .custom-file-input:active::before {
-
-} */
+  background: #1a5dab;
+}
 
 .bottomLabel {
   font-weight: 300;
@@ -154,7 +141,7 @@
   align-items: center;
   padding-bottom: 3.2rem;
   border-bottom: 0.1rem solid #c7c7c7;
-  margin-top: 50px;
+  margin-top: 5rem;
 }
 .name {
   width: 100%;
@@ -187,12 +174,7 @@
   width: 100%;
 }
 
-/* .ramInfo div {
-    width: 100%;
-  } */
-
 .radioBox {
-  /* background-color: red; */
   display: flex;
   align-items: center;
   gap: 6rem;
@@ -213,18 +195,6 @@
 .dateAndPrice div {
   width: 100%;
 }
-
-/* .radios {
-    margin-top: 20px;
-    display: flex;
-    gap: 60px;
-  }
-  
-  .radioContainer input {
-    display: inline-block;
-    width: 20px;
-    margin-right: 18px;
-  } */
 
 .actions {
   display: flex;
@@ -257,7 +227,6 @@
 }
 
 .invalid label {
-  /* background-color: red; */
   color: red;
 }
 
@@ -284,9 +253,8 @@
 .imageError {
   background: #fff1f1;
   border: 1.8px dashed #e52f2f;
-
-  /* background-color: red; */
 }
+
 .imageError label {
   color: #e52f2f;
 }
@@ -299,7 +267,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 2rem;
 }
 
 .labelAndErrorWrapper svg {
@@ -316,10 +284,10 @@
 
   .custom-file-input::before {
     content: "ლეპტოპის ფოტოს \A ატვირთვა";
-    white-space: pre; /* or pre-wrap */
+    white-space: pre;
     background: none;
     color: #4386a9;
-    line-height: 30px;
+    line-height: 3rem;
   }
 
   .imageUploader {
@@ -327,7 +295,6 @@
     padding-top: 4.3rem;
     padding-bottom: 2.8rem;
     position: relative;
-    /* background-color: red; */
   }
 
   .existImage {
@@ -335,7 +302,7 @@
     padding-top: 0;
     padding-bottom: 0;
     gap: 0;
-    margin-bottom: 40px;
+    margin-bottom: 4rem;
   }
 
   .imageError .custom-file-input::before {
@@ -349,18 +316,18 @@
   }
 
   .imgWrapper {
-    width: 358px;
-    height: 161px;
+    width: 35.8rem;
+    height: 16.1rem;
   }
 
   .imageStatusName {
     gap: 15px;
     position: absolute;
-    bottom: -70px;
+    bottom: -7rem;
     left: 0;
     z-index: 101;
     align-items: center;
-    font-size: 14px;
+    font-size: 1.4rem;
   }
 
   .imageInfo {
@@ -369,34 +336,31 @@
   }
   .haveImage::before {
     content: "თავიდან ატვირთე";
-    padding: 12px 10px;
+    padding: 1.2rem 1rem;
     position: absolute;
-    bottom: -70px;
+    bottom: -7rem;
     right: 0;
     z-index: 101;
     background: #62a1eb;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 
   .names {
     display: block;
-    /* border-bottom: 4px solid #ebebeb; */
     border: none;
   }
 
   .name {
-    margin-bottom: 23px;
+    margin-bottom: 2.3rem;
   }
   .cpuInfo {
-    /* background-color: red; */
-
     flex-direction: column;
     gap: 2.3rem;
   }
 
   .cpuSelect {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
 
   .ramInfo {
@@ -410,7 +374,7 @@
   }
 
   .date {
-    margin-top: 60px;
+    margin-top: 6rem;
   }
 
   .actions {
