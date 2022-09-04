@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import classes from "./Dropdown.module.css";
 import DropIcon from "../../assets/formIcons/DropIcon";
 

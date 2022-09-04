@@ -101,6 +101,10 @@
   margin-bottom: 84px;
 }
 
+.responsiveState {
+  display: none;
+}
+
 @media (max-width: 390px) {
   .wrapper {
     width: 358px;
@@ -172,6 +176,10 @@
 
   .bigState {
     display: none;
+  }
+
+  .responsiveState {
+    display: block;
   }
 
   .heading {

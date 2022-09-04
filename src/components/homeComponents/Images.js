@@ -7,14 +7,14 @@ const Images = () => {
   return (
     <div className={classes.imagesBox}>
       <div className={classes.logoImageBox}>
-        <img src={logo} alt="logoImage" />
+        <img src={logo} alt="logoImg" />
       </div>
       <div className={classes.bigImageBox}>
-        <img className={classes.bigImage} src={bigImage} alt="layoutImage" />
+        <img className={classes.bigImage} src={bigImage} alt="layoutImg" />
         <img
           className={classes.responsiveImage}
           src={responsiveImage}
-          alt="responsive photo"
+          alt="responsiveimg"
         />
       </div>
     </div>

@@ -9,12 +9,9 @@ import {
   generalValidator,
   phoneNumberValidator,
 } from "../../helpers/Validators";
-// import { onlyGeorgia } from "../../helpers/Validators";
+
 // import Dropdown from "../dropdown/Dropdown";
-import {
-  // getDataFromLocalStorage,
-  getDataFromLocalStorage2,
-} from "../../helpers/LocalStorageFunctions";
+import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
@@ -28,7 +25,7 @@ const Form = () => {
 
   const navigate = useNavigate();
 
-  const userDataFromLocal = getDataFromLocalStorage2("userData", "enteredName");
+  const userDataFromLocal = getDataFromLocalStorage("userData");
   console.log(userDataFromLocal);
 
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();

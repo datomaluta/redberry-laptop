@@ -25,14 +25,6 @@ export const clearLocalStorage = () => {
 export const getDataFromLocalStorage = (value) => {
   const result = localStorage.getItem(value);
   if (!result) {
-    return "";
-  }
-  return result;
-};
-
-export const getDataFromLocalStorage2 = (value) => {
-  const result = localStorage.getItem(value);
-  if (!result) {
     return;
   }
   return JSON.parse(result);

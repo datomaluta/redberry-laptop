@@ -15,11 +15,11 @@ import { imageValidator } from "../../helpers/Validators";
 import axios from "axios";
 import {
   clearLocalStorage,
-  getDataFromLocalStorage2,
+  getDataFromLocalStorage,
 } from "../../helpers/LocalStorageFunctions";
 import { useNavigate } from "react-router-dom";
 import cameraPhoto from "../../assets/formimages/photoCamera.png";
-// import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
+
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import UploadedIcon from "../../assets/formIcons/UploadedIcon";
 
@@ -28,22 +28,17 @@ const LaptopForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [brandId, setBrandId] = useState("");
   const [baseImage, setBaseImage] = useState("");
-
   const navigate = useNavigate();
-
-  const laptopDataFromlocal = getDataFromLocalStorage2("laptopData");
-  const userDataFromLocal = getDataFromLocalStorage2("userData");
-  console.log(laptopDataFromlocal);
+  const laptopDataFromlocal = getDataFromLocalStorage("laptopData");
+  const userDataFromLocal = getDataFromLocalStorage("userData");
 
   const {
     error: brandError,
     fetchField: fetchBrands,
     data: brands,
   } = useHttp();
-  console.log(brandError);
 
   const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
-  console.log(cpuError);
 
   useEffect(() => {
     fetchBrands("brands");
@@ -154,7 +149,6 @@ const LaptopForm = () => {
     // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetMemoryType,
   } = useInput((value) => value.trim() !== "", laptopDataFromlocal?.memoryType);
-  console.log(memoryType);
 
   const {
     value: purchaseDate,
@@ -180,7 +174,7 @@ const LaptopForm = () => {
 
   const {
     value: laptopState,
-    // isValid: laptopStateIsValid,
+    isValid: laptopStateIsValid,
     isTouchedHandler: setLaptopStateIsTouched,
     hasError: laptopStateHasError,
     valueChangeHandler: laptopStateChangeHandler,
@@ -211,9 +205,10 @@ const LaptopForm = () => {
       !cpuIsValid ||
       !cpuCoreIsValid ||
       !cpuThreadIsValid ||
-      !priceIsValid ||
       !ramIsValid ||
       !memoryTypeIsValid ||
+      !laptopStateIsValid ||
+      !priceIsValid ||
       !purchaseDateIsValid
     ) {
       return;
@@ -229,19 +224,35 @@ const LaptopForm = () => {
       position_id: +userDataFromLocal.positionId,
       phone_number: userDataFromLocal.enteredPhoneNumber,
       email: userDataFromLocal.enteredEmail,
-      laptop_name: laptopDataFromlocal.laptopName,
-      laptop_brand_id: +laptopDataFromlocal.brandId,
-      laptop_cpu: laptopDataFromlocal.cpu,
-      laptop_cpu_cores: +laptopDataFromlocal.cpuCore,
-      laptop_cpu_threads: +laptopDataFromlocal.cpuThread,
-      laptop_ram: +laptopDataFromlocal.ram,
-      laptop_hard_drive_type: laptopDataFromlocal.memoryType.toUpperCase(),
-      laptop_state: laptopDataFromlocal.state,
-      laptop_purchase_date: "",
-
-      laptop_price: +laptopDataFromlocal.price,
+      laptop_name: laptopName,
+      laptop_brand_id: +brandId,
+      laptop_cpu: cpu,
+      laptop_cpu_cores: +cpuCore,
+      laptop_cpu_threads: +cpuThread,
+      laptop_ram: +ram,
+      laptop_hard_drive_type: memoryType.toUpperCase(),
+      laptop_state: laptopState,
+      laptop_purchase_date: purchaseDate,
+      laptop_price: +price,
+      // token: "1430dbe763b0852044c745ac14a4d9ec",
+      // laptop_image: laptopImage,
+      // name: userDataFromLocal.enteredName,
+      // surname: userDataFromLocal.enteredSurname,
+      // team_id: +userDataFromLocal.teamId,
+      // position_id: +userDataFromLocal.positionId,
+      // phone_number: userDataFromLocal.enteredPhoneNumber,
+      // email: userDataFromLocal.enteredEmail,
+      // laptop_name: laptopDataFromlocal.laptopName,
+      // laptop_brand_id: +laptopDataFromlocal.brandId,
+      // laptop_cpu: laptopDataFromlocal.cpu,
+      // laptop_cpu_cores: +laptopDataFromlocal.cpuCore,
+      // laptop_cpu_threads: +laptopDataFromlocal.cpuThread,
+      // laptop_ram: +laptopDataFromlocal.ram,
+      // laptop_hard_drive_type: laptopDataFromlocal.memoryType.toUpperCase(),
+      // laptop_state: laptopState,
+      // laptop_purchase_date: purchaseDate,
+      // laptop_price: +laptopDataFromlocal.price,
     };
-    console.log(laptopDataFromlocal.purchaseDate);
 
     const data = new FormData();
 
@@ -284,7 +295,6 @@ const LaptopForm = () => {
       setIsLoading(false);
     }
   };
-  console.log(purchaseDate);
 
   // when one of this field change, local storage also be updated
   useEffect(() => {
@@ -315,7 +325,6 @@ const LaptopForm = () => {
     laptopState,
     brandId,
   ]);
-  console.log(laptopImage);
 
   const laptopImageClasses = laptopImageHasError
     ? `${classes.imageUploader} ${classes.imageError}`
@@ -364,6 +373,7 @@ const LaptopForm = () => {
     <GeneralForm onSubmit={submitHandler}>
       {isLoading && <LoadingSpinner />}
       {requestError && <h1>{requestError}</h1>}
+      {brandError || (cpuError && <h1>Failed to fetch cpu/brand data</h1>)}
       <div
         className={
           !laptopImage
@@ -415,7 +425,7 @@ const LaptopForm = () => {
             <img
               className={classes.uploadedImage}
               src={baseImage}
-              alt="baseimg"
+              alt="uploadedimg"
             />
           </div>
         )}

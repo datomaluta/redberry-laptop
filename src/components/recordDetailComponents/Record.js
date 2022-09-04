@@ -1,36 +1,31 @@
 import { Fragment, useEffect } from "react";
-
 import classes from "./Record.module.css";
 import useHttp from "../../hooks/use-http";
 
 const Record = (props) => {
   // const [position, setPosition] = useState();
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
-  console.log(teamError);
 
   const {
     error: positionError,
     fetchField: fetchPositions,
     data: positions,
   } = useHttp();
-  console.log(positionError);
 
   const {
     error: brandError,
     fetchField: fetchBrands,
     data: brands,
   } = useHttp();
-  console.log(brandError);
 
-  const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
-  console.log(cpus);
-  console.log(cpuError);
+  // const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
+
   useEffect(() => {
     fetchTeams("teams");
     fetchPositions("positions");
     fetchBrands("brands");
-    fetchCpus("cpus");
-  }, [fetchTeams, fetchPositions, fetchBrands, fetchCpus]);
+    // fetchCpus("cpus");
+  }, [fetchTeams, fetchPositions, fetchBrands]);
   // useEffect(() => {
   //   if (positions) {
   //     setPosition(
@@ -65,6 +60,9 @@ const Record = (props) => {
 
   return (
     <Fragment>
+      {teamError ||
+        brandError ||
+        (positionError && <h1>team/brand/position fetch errro</h1>)}
       <h1 className={classes.heading}>ლეპტოპების ინფო</h1>
       <div className={classes.wrapper}>
         <div className={classes.personalInfo}>
