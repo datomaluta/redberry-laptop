@@ -51,7 +51,6 @@ const LaptopForm = () => {
     isTouchedHandler: setLaptopImageIsTouched,
     hasError: laptopImageHasError,
     valueChangeHandler: imgChangeHandler,
-    // inputBlurHandler: imgBlurHandler,
     reset: resetImageInput,
   } = useInput(imageValidator, "", true);
 
@@ -145,8 +144,6 @@ const LaptopForm = () => {
     isTouchedHandler: setMemoryTypeIsTouched,
     hasError: memoryTypeHaserror,
     valueChangeHandler: memoryTypeChangeHandler,
-
-    // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetMemoryType,
   } = useInput((value) => value.trim() !== "", laptopDataFromlocal?.memoryType);
 
@@ -178,7 +175,6 @@ const LaptopForm = () => {
     isTouchedHandler: setLaptopStateIsTouched,
     hasError: laptopStateHasError,
     valueChangeHandler: laptopStateChangeHandler,
-    // inputBlurHandler: memoryTypeBlurHandler,
     reset: resetlaptopState,
   } = useInput((value) => value.trim() !== "", laptopDataFromlocal?.state);
 
@@ -234,28 +230,9 @@ const LaptopForm = () => {
       laptop_state: laptopState,
       laptop_purchase_date: purchaseDate.split("/").join("-"),
       laptop_price: +price,
-      // token: "1430dbe763b0852044c745ac14a4d9ec",
-      // laptop_image: laptopImage,
-      // name: userDataFromLocal.enteredName,
-      // surname: userDataFromLocal.enteredSurname,
-      // team_id: +userDataFromLocal.teamId,
-      // position_id: +userDataFromLocal.positionId,
-      // phone_number: userDataFromLocal.enteredPhoneNumber,
-      // email: userDataFromLocal.enteredEmail,
-      // laptop_name: laptopDataFromlocal.laptopName,
-      // laptop_brand_id: +laptopDataFromlocal.brandId,
-      // laptop_cpu: laptopDataFromlocal.cpu,
-      // laptop_cpu_cores: +laptopDataFromlocal.cpuCore,
-      // laptop_cpu_threads: +laptopDataFromlocal.cpuThread,
-      // laptop_ram: +laptopDataFromlocal.ram,
-      // laptop_hard_drive_type: laptopDataFromlocal.memoryType.toUpperCase(),
-      // laptop_state: laptopState,
-      // laptop_purchase_date: purchaseDate,
-      // laptop_price: +laptopDataFromlocal.price,
     };
 
     const data = new FormData();
-
     const formKeys = Object.keys(formValues);
 
     for (let formKey of formKeys) {
@@ -273,7 +250,10 @@ const LaptopForm = () => {
       );
       setIsLoading(false);
       navigate("/success");
+
       console.log(res);
+
+      // reset fields
       resetImageInput();
       resetLaptopInput();
       resetBrandSelector();
@@ -286,9 +266,9 @@ const LaptopForm = () => {
       resetPriceInput();
       resetlaptopState();
 
+      // clear storage after submit
       clearLocalStorage();
     } catch (err) {
-      console.log("hello from errror");
       console.log(err.message);
       console.log(err);
       setRequestError("Request error, Something went wrong!");
@@ -326,6 +306,7 @@ const LaptopForm = () => {
     brandId,
   ]);
 
+  // classes for fields
   const laptopImageClasses = laptopImageHasError
     ? `${classes.imageUploader} ${classes.imageError}`
     : classes.imageUploader;
@@ -372,7 +353,7 @@ const LaptopForm = () => {
   return (
     <GeneralForm onSubmit={submitHandler}>
       {isLoading && <LoadingSpinner />}
-      {requestError && <h1>{requestError}</h1>}
+      {requestError && <h2>Something went wrong, please try again</h2>}
       {brandError || (cpuError && <h1>Failed to fetch cpu/brand data</h1>)}
       <div
         className={
@@ -406,9 +387,10 @@ const LaptopForm = () => {
                 : classes["custom-file-input"]
             }
             type="file"
+            accept="image/*"
           />
         </div>
-        {/* after image upload content */}
+        {/*content after image upload is done  */}
         {laptopImage && (
           <div className={classes.imageStatusName}>
             <UploadedIcon />
@@ -538,7 +520,6 @@ const LaptopForm = () => {
                 id="ssd"
                 name="ramType"
                 value="ssd"
-                // checked={ssdIsChecked}
                 checked={memoryType === "ssd"}
               />
               <label>SSD</label>
@@ -550,7 +531,6 @@ const LaptopForm = () => {
                 id="hdd"
                 name="ramType"
                 value="hdd"
-                // checked={hddIsChecked}
                 checked={memoryType === "hdd"}
               />
               <label>HDD</label>

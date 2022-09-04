@@ -10,18 +10,11 @@ import {
   phoneNumberValidator,
 } from "../../helpers/Validators";
 
-// import Dropdown from "../dropdown/Dropdown";
 import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
   const [selectedPositionId, setSelectedPositionId] = useState("");
-  // const [selectedTeam, setSelectedTeam] = useState("");
-  // const [selectedTeamIsTouched, setSelectedTeamIsTouched] = useState(false);
-  // const [selectedPosition, setSelectedPosition] = useState("");
-  // const [teamId, setTeamId] = useState("");
-  // const [filteredPositions, setFilteredPositions] = useState([]);
-  // const [userData, setUserData] = useState();
 
   const navigate = useNavigate();
 
@@ -59,7 +52,6 @@ const Form = () => {
     hasError: surnameInputHasError,
     valueChangeHandler: surnameChangeHandler,
     inputBlurHandler: surnameBlurHandler,
-
     reset: resetSurnameInput,
   } = useInput(generalValidator, userDataFromLocal?.enteredSurname);
 
@@ -70,7 +62,6 @@ const Form = () => {
     hasError: teamHasError,
     valueChangeHandler: teamChangeHandler,
     inputBlurHandler: teamBlurHandler,
-
     reset: resetTeamSelector,
   } = useInput((value) => value !== "", userDataFromLocal?.team);
 
@@ -81,11 +72,8 @@ const Form = () => {
     hasError: positionHasError,
     valueChangeHandler: positionChangeHandler,
     inputBlurHandler: positionBlurHandler,
-
     reset: resetPositionSelector,
   } = useInput((value) => value !== "", userDataFromLocal?.position);
-
-  // console.log(position);
 
   const {
     value: enteredEmail,
@@ -94,7 +82,6 @@ const Form = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-
     reset: resetEmail,
   } = useInput(emailValidator, userDataFromLocal?.enteredEmail);
 
@@ -105,17 +92,11 @@ const Form = () => {
     hasError: phoneNumberInputHasError,
     valueChangeHandler: phoneNumberChangeHandler,
     inputBlurHandler: phoneNumberBlurHandler,
-
     reset: resetPhoneNumber,
   } = useInput(phoneNumberValidator, userDataFromLocal?.enteredPhoneNumber);
 
-  // const [formValues, setFormValues] = useState({});
-
-  // useEffect for team and position selectors connection
-  // find in teams team, which name is equal selected team name
   useEffect(() => {
     if (teams.length > 0 && team.length > 0) {
-      // console.log("ki ki ki k i i");
       const selectedObj = teams.find((currTeam) => currTeam.name === team);
       localStorage.setItem("teamId", selectedObj.id);
       setSelectedTeamId(selectedObj.id);
@@ -180,7 +161,6 @@ const Form = () => {
       return;
     }
 
-    // console.log("Next page");
     navigate("/fillout/laptop");
 
     // Reset fields to initial contition
@@ -192,7 +172,7 @@ const Form = () => {
     resetPhoneNumber();
   };
 
-  // classes for when validation failed
+  // classes for fields
   const nameClasses = nameInputHasError
     ? `${classes.invalid} ${classes.firstName} `
     : classes.firstName;
@@ -215,55 +195,8 @@ const Form = () => {
     ? `${classes.invalid}`
     : "";
 
-  // console.log(enteredName);
-
-  // const selectTeamHandler = (team) => {
-  //   setSelectedTeam(team);
-  // };
-
-  // const selectPositionHandler = (position) => {
-  //   setSelectedPosition(position);
-  // };
-
-  // useEffect(() => {
-  //   if (teams.length > 0 && positions.length > 0) {
-  //     console.log(teams);
-  //     console.log(selectedTeam);
-  //     const teamOne = teams.find((curTeam) => curTeam.name === selectedTeam);
-  //     setTeamId(teamOne.id);
-  //     console.log(teamOne);
-  //     const filtered = positions.filter(
-  //       (position) => position["team_id"] === teamOne.id
-  //     );
-  //     setFilteredPositions(filtered);
-  //   }
-  // }, [selectedTeam]);
-  // console.log(selectedTeam);
-
-  // const touchHandler = () => {
-  //   setSelectedTeamIsTouched(true);
-  // };
-
   return (
     <GeneralForm>
-      {/* <Dropdown
-        setSelect={selectTeamHandler}
-        currentValue={selectedTeam}
-        values={teams}
-        defaultValue="თიმი"
-        disabled={false}
-        onTouch={touchHandler}
-        hasError={selectedTeam.length === 0 && selectedTeamIsTouched}
-      />
-      <Dropdown
-        setSelect={selectPositionHandler}
-        currentValue={selectedPosition}
-        values={filteredPositions}
-        defaultValue="პოზიცია"
-        disabled={!selectedTeam}
-        hasError={selectedPosition.length === 0}
-      /> */}
-      {/* <Dropdown /> */}
       {(teamError || positionError) && <h2>{teamError || positionError}</h2>}
       <div className={classes.names}>
         <div className={nameClasses}>

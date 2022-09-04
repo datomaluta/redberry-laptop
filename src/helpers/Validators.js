@@ -16,13 +16,6 @@ export const onlyGeorgian = (value) => {
   } else {
     return false;
   }
-  // for (let i = 0; i < value.length; i++) {
-  //   if (value.charCodeAt(i) < 4304 || value.charCodeAt(i) > 4336) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
 };
 
 export const emailValidator = (value) => {

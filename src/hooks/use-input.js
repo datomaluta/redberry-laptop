@@ -19,11 +19,6 @@ const useInput = (validateValue, initialValue = "", isImage = false) => {
     }
   };
 
-  // const test = {
-  //   enteredName: "dato",
-  //   enteredSurname: "maluta",
-  // };
-
   const inputBlurHandler = (event) => {
     setIsTouched(true);
   };

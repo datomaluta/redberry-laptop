@@ -18,5 +18,3 @@ const Actions = () => {
 };
 
 export default Actions;
-
-//2b1f230c1f33f07e9324c7d3b01272bd

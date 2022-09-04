@@ -6,6 +6,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
+      {/* content for mobile version */}
       {location.pathname === "/fillout/personal" && (
         <div className={classes.headerInfo}>
           <p>თანამშრომლის ინფო</p>

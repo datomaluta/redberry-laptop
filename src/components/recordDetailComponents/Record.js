@@ -3,7 +3,6 @@ import classes from "./Record.module.css";
 import useHttp from "../../hooks/use-http";
 
 const Record = (props) => {
-  // const [position, setPosition] = useState();
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
 
   const {
@@ -18,21 +17,11 @@ const Record = (props) => {
     data: brands,
   } = useHttp();
 
-  // const { error: cpuError, fetchField: fetchCpus, data: cpus } = useHttp();
-
   useEffect(() => {
     fetchTeams("teams");
     fetchPositions("positions");
     fetchBrands("brands");
-    // fetchCpus("cpus");
   }, [fetchTeams, fetchPositions, fetchBrands]);
-  // useEffect(() => {
-  //   if (positions) {
-  //     setPosition(
-  //       positions.find((position) => position.id === user["position_id"]).name
-  //     );
-  //   }
-  // }, [positions]);
 
   const {
     detailInfo: { user },
@@ -41,10 +30,6 @@ const Record = (props) => {
   console.log(user);
   console.log(laptop);
 
-  // if (!teams || !positions || !cpus || !brands) {
-  //   return;
-  // } else {
-  // }
   const team = teams
     ? teams.find((team) => team.id === user["team_id"])?.name
     : "";
@@ -55,8 +40,6 @@ const Record = (props) => {
   const brand = brands
     ? brands.find((brand) => brand.id === laptop["brand_id"])?.name
     : "";
-  // const cpu = cpus.find((cpu) => cpu.id == 1).name;
-  // console.log(cpu);
 
   return (
     <Fragment>

@@ -54,10 +54,6 @@
   font-size: 1.8rem;
 }
 
-.form select:focus {
-  background-color: rgb(255, 255, 255);
-}
-
 .form select option:hover {
   background: #e7f0f8;
 }
@@ -84,7 +80,7 @@
   .form {
     width: 100%;
     padding: 3.8rem 1.6rem 5.5rem;
-    border-radius: 12px 12px 0px 0px;
+    border-radius: 1.2rem 1.2rem 0px 0px;
     margin-bottom: 0;
     gap: 2.3rem;
   }
