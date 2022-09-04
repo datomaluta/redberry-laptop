@@ -22,6 +22,7 @@ import cameraPhoto from "../../assets/formimages/photoCamera.png";
 
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import UploadedIcon from "../../assets/formIcons/UploadedIcon";
+import GelIcon from "../../assets/formIcons/GelIcon";
 
 const LaptopForm = () => {
   const [requestError, setRequestError] = useState(null);
@@ -481,7 +482,7 @@ const LaptopForm = () => {
             onChange={cpuCoreChangeHandler}
             onBlur={cpuCoreBlurHandler}
             placeholder="14"
-            type="number"
+            // type="number"
           />
           <p className={classes.bottomLabel}>მხოლოდ ციფრები</p>
         </div>
@@ -492,7 +493,7 @@ const LaptopForm = () => {
             onChange={cpuThreadChangeHandler}
             onBlur={cpuThreadBlurHandler}
             placeholder="365"
-            type="number"
+            // type="number"
           />
           <p className={classes.bottomLabel}>მხოლოდ ციფრები</p>
         </div>
@@ -505,7 +506,7 @@ const LaptopForm = () => {
             onChange={ramChangeHandler}
             onBlur={ramBlurHandler}
             placeholder="16"
-            type="number"
+            // type="number"
           />
           <p className={classes.bottomLabel}>მხოლოდ ციფრები</p>
         </div>
@@ -545,18 +546,21 @@ const LaptopForm = () => {
             value={purchaseDate}
             onChange={purchaseDateChangeHandler}
             onBlur={purchaseDateBlurHandler}
-            placeholder="დდ / თთ / წწ"
+            placeholder="დდ / თთ / წწწწ"
             // type="date"
           />
         </div>
         <div className={priceClasses}>
           <label>ლეპტოპის ფასი</label>
-          <input
-            value={price}
-            onChange={priceChangeHandler}
-            onBlur={priceBlurHandler}
-            type="number"
-          />
+          <div className={classes.priceWrapper}>
+            <input
+              value={price}
+              onChange={priceChangeHandler}
+              onBlur={priceBlurHandler}
+              // type="number"
+            />
+            <GelIcon />
+          </div>
           <p className={classes.bottomLabel}>მხოლოდ ციფრები</p>
         </div>
       </div>
