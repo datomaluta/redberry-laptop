@@ -232,7 +232,7 @@ const LaptopForm = () => {
       laptop_ram: +ram,
       laptop_hard_drive_type: memoryType.toUpperCase(),
       laptop_state: laptopState,
-      laptop_purchase_date: purchaseDate,
+      laptop_purchase_date: purchaseDate.split("/").join("-"),
       laptop_price: +price,
       // token: "1430dbe763b0852044c745ac14a4d9ec",
       // laptop_image: laptopImage,
