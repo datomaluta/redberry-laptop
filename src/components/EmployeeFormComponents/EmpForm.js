@@ -11,12 +11,15 @@ import {
 } from "../../helpers/Validators";
 
 import { getDataFromLocalStorage } from "../../helpers/LocalStorageFunctions";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/user-slice";
 
 const Form = () => {
   const [selectedTeamId, setSelectedTeamId] = useState("");
   const [selectedPositionId, setSelectedPositionId] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const userDataFromLocal = getDataFromLocalStorage("userData");
   console.log(userDataFromLocal);
@@ -137,6 +140,29 @@ const Form = () => {
     enteredPhoneNumber,
     selectedTeamId,
     selectedPositionId,
+  ]);
+
+  useEffect(() => {
+    if (
+      enteredNameIsValid &&
+      enteredSurnameIsValid &&
+      teamIsValid &&
+      positionIsValid &&
+      enteredEmailIsValid &&
+      enteredPhoneNumberIsValid
+    ) {
+      dispatch(userActions.setUserFormValid());
+    } else {
+      dispatch(userActions.setUserformInValid());
+    }
+  }, [
+    enteredNameIsValid,
+    enteredSurnameIsValid,
+    teamIsValid,
+    positionIsValid,
+    enteredEmailIsValid,
+    enteredPhoneNumberIsValid,
+    dispatch,
   ]);
 
   const nextPageHandler = (event) => {

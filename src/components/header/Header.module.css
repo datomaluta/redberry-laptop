@@ -19,6 +19,17 @@
   padding-bottom: 10px;
 }
 
+.navButton {
+  font-family: "Helvetica Neue";
+  background: none;
+  border: none;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: #232323;
+  cursor: pointer;
+}
+
 .headerInfo {
   display: none;
 }

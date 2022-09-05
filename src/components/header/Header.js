@@ -1,8 +1,26 @@
 import classes from "./Header.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const userFormIsValid = useSelector((state) => state.user.userFormIsValid);
+  const laptopFormIsValid = useSelector(
+    (state) => state.laptop.laptopFormIsValid
+  );
+  console.log(userFormIsValid);
+  const toLapFormHandler = () => {
+    if (userFormIsValid) {
+      navigate("/fillout/laptop");
+    }
+  };
+
+  const toEmpFormHandler = () => {
+    if (laptopFormIsValid) {
+      navigate("/fillout/personal");
+    }
+  };
 
   return (
     <header className={classes.header}>
@@ -26,7 +44,9 @@ const Header = () => {
               location.pathname === "/fillout/personal" ? classes.active : ""
             }`}
           >
-            თანამშრომლის ინფო
+            <button className={classes.navButton} onClick={toEmpFormHandler}>
+              თანამშრომლის ინფო
+            </button>
           </li>
 
           <li
@@ -34,7 +54,9 @@ const Header = () => {
               location.pathname === "/fillout/laptop" ? classes.active : ""
             }`}
           >
-            ლეპტოპის მახასიათებლები
+            <button className={classes.navButton} onClick={toLapFormHandler}>
+              ლეპტოპის მახასიათებლები
+            </button>
           </li>
         </ul>
       </nav>

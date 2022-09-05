@@ -23,6 +23,8 @@ import cameraPhoto from "../../assets/formimages/photoCamera.png";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import UploadedIcon from "../../assets/formIcons/UploadedIcon";
 import GelIcon from "../../assets/formIcons/GelIcon";
+import { useDispatch } from "react-redux";
+import { laptopActions } from "../../store/laptop-slice";
 
 const LaptopForm = () => {
   const [requestError, setRequestError] = useState(null);
@@ -30,6 +32,7 @@ const LaptopForm = () => {
   const [brandId, setBrandId] = useState("");
   const [baseImage, setBaseImage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const laptopDataFromlocal = getDataFromLocalStorage("laptopData");
   const userDataFromLocal = getDataFromLocalStorage("userData");
 
@@ -305,6 +308,39 @@ const LaptopForm = () => {
     price,
     laptopState,
     brandId,
+  ]);
+
+  useEffect(() => {
+    if (
+      laptopImageIsValid &&
+      laptopNameIsValid &&
+      brandIsValid &&
+      cpuIsValid &&
+      cpuCoreIsValid &&
+      cpuThreadIsValid &&
+      ramIsValid &&
+      memoryTypeIsValid &&
+      laptopStateIsValid &&
+      priceIsValid &&
+      purchaseDateIsValid
+    ) {
+      dispatch(laptopActions.setLaptopFormValid());
+    } else {
+      dispatch(laptopActions.setLaptopformInValid());
+    }
+  }, [
+    laptopImageIsValid,
+    laptopNameIsValid,
+    brandIsValid,
+    cpuIsValid,
+    cpuCoreIsValid,
+    cpuThreadIsValid,
+    ramIsValid,
+    memoryTypeIsValid,
+    laptopStateIsValid,
+    priceIsValid,
+    purchaseDateIsValid,
+    dispatch,
   ]);
 
   // classes for fields
