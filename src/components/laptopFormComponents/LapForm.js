@@ -310,6 +310,7 @@ const LaptopForm = () => {
     brandId,
   ]);
 
+  // useffect for header navigation
   useEffect(() => {
     if (
       laptopImageIsValid &&

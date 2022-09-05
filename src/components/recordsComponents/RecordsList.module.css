@@ -10,10 +10,11 @@
 
 .heading {
   font-weight: 700;
-  font-size: 3.4rem;
+  font-size: 4.4rem;
   margin-top: 7.9rem;
   margin-bottom: 7.9rem;
   text-align: center;
+  font-variant-caps: all-small-caps;
 }
 
 .error {
@@ -39,8 +40,8 @@
 
   .heading {
     font-weight: 700;
-    font-size: 1.6rem;
-    margin-top: 3.1rem;
+    font-size: 2.6rem;
+    margin-top: 2.4rem;
     margin-bottom: 3.1rem;
     text-align: center;
   }

@@ -7,6 +7,7 @@ import LaptopForm from "./pages/LaptopForm";
 import Success from "./pages/Success";
 import Records from "./pages/Records";
 import RecordDetail from "./pages/RecordDetail";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/records" element={<Records />} />
         <Route path="/records/:id" element={<RecordDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
