@@ -1,5 +1,5 @@
 .imageUploader {
-  /* background-color: red; */
+  background: #f7f7f7;
   border: 0.2rem dashed #4386a9;
   border-radius: 18px;
   display: flex;
@@ -292,6 +292,16 @@
     background: none;
     color: #4386a9;
     line-height: 3rem;
+  }
+
+  .custom-file-input:focus::before {
+    background: none;
+  }
+  .custom-file-input:hover::before {
+    background: none;
+  }
+  .custom-file-input:active::before {
+    background: none;
   }
 
   .imageUploader {

@@ -27,8 +27,6 @@ const Record = (props) => {
     detailInfo: { user },
     detailInfo: { laptop },
   } = props;
-  console.log(user);
-  console.log(laptop);
 
   const team = teams
     ? teams.find((team) => team.id === user["team_id"])?.name
@@ -45,7 +43,7 @@ const Record = (props) => {
     <Fragment>
       {teamError ||
         brandError ||
-        (positionError && <h1>team/brand/position fetch errro</h1>)}
+        (positionError && <h1>team/brand/position fetch error</h1>)}
       <h1 className={classes.heading}>ლეპტოპების ინფო</h1>
       <div className={classes.wrapper}>
         <div className={classes.personalInfo}>
@@ -75,10 +73,10 @@ const Record = (props) => {
         <div className={classes.laptopInfo}>
           <div className={classes.leftSide}>
             <div className={classes.titles}>
-              <p>ლეპტოპის სახელი</p>
-              <p>ლეპტოპის ბრენდი</p>
+              <p>ლეპტოპის სახელი:</p>
+              <p>ლეპტოპის ბრენდი:</p>
               <p>RAM:</p>
-              <p>მეხსიერების ტიპი</p>
+              <p>მეხსიერების ტიპი:</p>
             </div>
             <div className={`${classes.values} ${classes.certainLap}`}>
               <p>{laptop.name}</p>
@@ -110,7 +108,7 @@ const Record = (props) => {
             </div>
             <div className={`${classes.values} ${classes.certainRest}`}>
               <p>{laptop.state === "new" ? "ახალი" : "მეორადი"}</p>
-              <p>{laptop.price}</p>
+              <p>{laptop.price} ₾</p>
             </div>
           </div>
           <div className={classes.rightSide}>
@@ -118,7 +116,7 @@ const Record = (props) => {
               <p>შევსების რიცხვი:</p>
             </div>
             <div className={`${classes.values} ${classes.certainDate}`}>
-              <p>{laptop["purchase_date"]}</p>
+              <p>{laptop["purchase_date"].split("-").join("/")}</p>
             </div>
           </div>
         </div>

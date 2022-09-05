@@ -9,7 +9,7 @@ const Records = () => {
   const { error, isLoading, fetchData: fetchLaptops, data } = useFetchData();
   useEffect(() => {
     fetchLaptops(
-      "https://pcfy.redberryinternship.ge/api/laptops?token=1430dbe763b0852044c745ac14a4d9ec"
+      "https://pcfy.redberryinternship.ge/api/laptops?token=a93d3cb1587a158ebd38573690536c77"
     );
   }, [fetchLaptops]);
   return (

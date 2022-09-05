@@ -81,3 +81,9 @@
     cursor: pointer;
   }
 }
+
+.selectorsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}

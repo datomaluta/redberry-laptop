@@ -73,6 +73,7 @@ export const dateValidator = (value) => {
 
   if (value.match(dateFormat) || value.length === 0) {
     console.log("matches");
+    console.log(value);
     return true;
   } else {
     return false;

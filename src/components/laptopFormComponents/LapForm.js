@@ -158,7 +158,7 @@ const LaptopForm = () => {
 
     reset: resetPurchaseDate,
   } = useInput(dateValidator, laptopDataFromlocal?.purchaseDate);
-  console.log(purchaseDate.length);
+  console.log(purchaseDate);
 
   const {
     value: price,
@@ -213,7 +213,7 @@ const LaptopForm = () => {
 
     // here is request send functionality
     const formValues = {
-      token: "1430dbe763b0852044c745ac14a4d9ec",
+      token: "a93d3cb1587a158ebd38573690536c77",
       laptop_image: laptopImage,
       name: userDataFromLocal.enteredName,
       surname: userDataFromLocal.enteredSurname,
