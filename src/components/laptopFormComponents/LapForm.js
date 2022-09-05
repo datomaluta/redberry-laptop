@@ -216,7 +216,7 @@ const LaptopForm = () => {
 
     // here is request send functionality
     const formValues = {
-      token: "a93d3cb1587a158ebd38573690536c77",
+      token: "77119e36462a2d1f648025aba27ae9d5",
       laptop_image: laptopImage,
       name: userDataFromLocal.enteredName,
       surname: userDataFromLocal.enteredSurname,
@@ -251,9 +251,9 @@ const LaptopForm = () => {
         data,
         {}
       );
+      console.log(res);
       setIsLoading(false);
       navigate("/success");
-
 
       // reset fields
       resetImageInput();

@@ -23,7 +23,7 @@ const RecordDetail = () => {
 
   useEffect(() => {
     fetchLaptopDetail(
-      `https://pcfy.redberryinternship.ge/api/laptop/${id}?token=a93d3cb1587a158ebd38573690536c77`
+      `https://pcfy.redberryinternship.ge/api/laptop/${id}?token=77119e36462a2d1f648025aba27ae9d5`
     );
   }, [fetchLaptopDetail, id]);
 

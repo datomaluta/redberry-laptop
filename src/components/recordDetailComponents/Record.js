@@ -113,7 +113,7 @@ const Record = (props) => {
           </div>
           <div className={classes.rightSide}>
             <div className={classes.titles}>
-              <p>შევსების რიცხვი:</p>
+              <p>შეძენის რიცხვი:</p>
             </div>
             <div className={`${classes.values} ${classes.certainDate}`}>
               <p>{laptop["purchase_date"]?.split("-").join("/")}</p>
