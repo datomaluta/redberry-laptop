@@ -31,7 +31,6 @@ const Record = (props) => {
   const team = teams
     ? teams.find((team) => team.id === user["team_id"])?.name
     : "";
-  console.log(team);
   const position = positions
     ? positions.find((position) => position.id === user["position_id"])?.name
     : "";

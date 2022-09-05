@@ -161,7 +161,7 @@ const LaptopForm = () => {
 
     reset: resetPurchaseDate,
   } = useInput(dateValidator, laptopDataFromlocal?.purchaseDate);
-  console.log(purchaseDate);
+
 
   const {
     value: price,

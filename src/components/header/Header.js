@@ -9,7 +9,7 @@ const Header = () => {
   const laptopFormIsValid = useSelector(
     (state) => state.laptop.laptopFormIsValid
   );
-  console.log(userFormIsValid);
+
   const toLapFormHandler = () => {
     if (userFormIsValid) {
       navigate("/fillout/laptop");
