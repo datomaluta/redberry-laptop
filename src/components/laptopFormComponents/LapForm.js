@@ -36,6 +36,7 @@ const LaptopForm = () => {
   const laptopDataFromlocal = getDataFromLocalStorage("laptopData");
   const userDataFromLocal = getDataFromLocalStorage("userData");
 
+  // fetch brands anc cpus for select input
   const {
     error: brandError,
     fetchField: fetchBrands,
@@ -94,7 +95,6 @@ const LaptopForm = () => {
         (currBrand) => currBrand.name === brand
       );
       setBrandId(selectedBrand.id);
-      console.log(selectedBrand.id);
       localStorage.setItem("brandId", selectedBrand.id);
     }
   }, [brands, brand]);
@@ -240,7 +240,6 @@ const LaptopForm = () => {
     const formKeys = Object.keys(formValues);
 
     for (let formKey of formKeys) {
-      console.log(formKey, formValues[formKey]);
       data.append(formKey, formValues[formKey]);
     }
 
@@ -255,7 +254,6 @@ const LaptopForm = () => {
       setIsLoading(false);
       navigate("/success");
 
-      console.log(res);
 
       // reset fields
       resetImageInput();

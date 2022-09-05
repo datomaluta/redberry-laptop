@@ -22,7 +22,6 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const userDataFromLocal = getDataFromLocalStorage("userData");
-  console.log(userDataFromLocal);
 
   const { error: teamError, fetchField: fetchTeams, data: teams } = useHttp();
   const {
@@ -44,7 +43,6 @@ const Form = () => {
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
-
     reset: resetNameInput,
   } = useInput(generalValidator, userDataFromLocal?.enteredName);
 

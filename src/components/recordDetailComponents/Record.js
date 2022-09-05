@@ -43,14 +43,14 @@ const Record = (props) => {
     <Fragment>
       {teamError ||
         brandError ||
-        (positionError && <h1>team/brand/position fetch error</h1>)}
+        (positionError && <h3>team/brand/position fetch error</h3>)}
       <h1 className={classes.heading}>ლეპტოპების ინფო</h1>
       <div className={classes.wrapper}>
         <div className={classes.personalInfo}>
           <div className={classes.imgWrapper}>
             <img
               src={`https://pcfy.redberryinternship.ge/${laptop.image}`}
-              alt="imags"
+              alt="recordimg"
             />
           </div>
           <div className={classes.infoBox}>
