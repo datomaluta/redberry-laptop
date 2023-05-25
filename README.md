@@ -27,7 +27,7 @@ Redberry Laptop App is a platform where employee can fill out a big form where i
 ### Tech Stack
 
 - <img src="readme/assets/react.png" height="18" style="position: relative; top: 4px" /> [React @18.2.0](https://reactjs.org) - front-end framework
-- <img src="readme/assets/css.png"  height="20" style="position: relative; top: 4px" /> [CSS module](https://tailwindcss.com/) - CSS
+- <img src="readme/assets/css.png"  height="20" style="position: relative; top: 4px" /> [CSS module] - CSS
 
 #
 
